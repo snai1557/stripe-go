@@ -435,6 +435,8 @@ type PaymentMethodParams struct {
 	Customer *string `form:"customer"`
 	// The PaymentMethod to share.
 	PaymentMethod *string `form:"payment_method"`
+	// IP.
+	IP *string `form:"ip"`
 }
 
 // Returns a list of PaymentMethods for Treasury flows. If you want to list the PaymentMethods attached to a Customer for payments, you should use the [List a Customer's PaymentMethods](https://stripe.com/docs/api/payment_methods/customer_list) API instead.
