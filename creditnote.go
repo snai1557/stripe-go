@@ -19,6 +19,31 @@ const (
 	CreditNoteReasonProductUnsatisfactory CreditNoteReason = "product_unsatisfactory"
 )
 
+// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
+type CreditNoteShippingCostTaxTaxabilityReason string
+
+// List of values that CreditNoteShippingCostTaxTaxabilityReason can take
+const (
+	CreditNoteShippingCostTaxTaxabilityReasonCustomerExempt          CreditNoteShippingCostTaxTaxabilityReason = "customer_exempt"
+	CreditNoteShippingCostTaxTaxabilityReasonExcludedTerritory       CreditNoteShippingCostTaxTaxabilityReason = "excluded_territory"
+	CreditNoteShippingCostTaxTaxabilityReasonJurisdictionUnsupported CreditNoteShippingCostTaxTaxabilityReason = "jurisdiction_unsupported"
+	CreditNoteShippingCostTaxTaxabilityReasonNotCollecting           CreditNoteShippingCostTaxTaxabilityReason = "not_collecting"
+	CreditNoteShippingCostTaxTaxabilityReasonNotSubjectToTax         CreditNoteShippingCostTaxTaxabilityReason = "not_subject_to_tax"
+	CreditNoteShippingCostTaxTaxabilityReasonNotSupported            CreditNoteShippingCostTaxTaxabilityReason = "not_supported"
+	CreditNoteShippingCostTaxTaxabilityReasonPortionProductExempt    CreditNoteShippingCostTaxTaxabilityReason = "portion_product_exempt"
+	CreditNoteShippingCostTaxTaxabilityReasonPortionReducedRated     CreditNoteShippingCostTaxTaxabilityReason = "portion_reduced_rated"
+	CreditNoteShippingCostTaxTaxabilityReasonPortionStandardRated    CreditNoteShippingCostTaxTaxabilityReason = "portion_standard_rated"
+	CreditNoteShippingCostTaxTaxabilityReasonProductExempt           CreditNoteShippingCostTaxTaxabilityReason = "product_exempt"
+	CreditNoteShippingCostTaxTaxabilityReasonProductExemptHoliday    CreditNoteShippingCostTaxTaxabilityReason = "product_exempt_holiday"
+	CreditNoteShippingCostTaxTaxabilityReasonProportionallyRated     CreditNoteShippingCostTaxTaxabilityReason = "proportionally_rated"
+	CreditNoteShippingCostTaxTaxabilityReasonReducedRated            CreditNoteShippingCostTaxTaxabilityReason = "reduced_rated"
+	CreditNoteShippingCostTaxTaxabilityReasonReverseCharge           CreditNoteShippingCostTaxTaxabilityReason = "reverse_charge"
+	CreditNoteShippingCostTaxTaxabilityReasonStandardRated           CreditNoteShippingCostTaxTaxabilityReason = "standard_rated"
+	CreditNoteShippingCostTaxTaxabilityReasonTaxableBasisReduced     CreditNoteShippingCostTaxTaxabilityReason = "taxable_basis_reduced"
+	CreditNoteShippingCostTaxTaxabilityReasonVATExempt               CreditNoteShippingCostTaxTaxabilityReason = "vat_exempt"
+	CreditNoteShippingCostTaxTaxabilityReasonZeroRated               CreditNoteShippingCostTaxTaxabilityReason = "zero_rated"
+)
+
 // Status of this credit note, one of `issued` or `void`. Learn more about [voiding credit notes](https://stripe.com/docs/billing/invoices/credit-notes#voiding).
 type CreditNoteStatus string
 
@@ -26,6 +51,28 @@ type CreditNoteStatus string
 const (
 	CreditNoteStatusIssued CreditNoteStatus = "issued"
 	CreditNoteStatusVoid   CreditNoteStatus = "void"
+)
+
+// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
+type CreditNoteTaxAmountTaxabilityReason string
+
+// List of values that CreditNoteTaxAmountTaxabilityReason can take
+const (
+	CreditNoteTaxAmountTaxabilityReasonCustomerExempt       CreditNoteTaxAmountTaxabilityReason = "customer_exempt"
+	CreditNoteTaxAmountTaxabilityReasonNotCollecting        CreditNoteTaxAmountTaxabilityReason = "not_collecting"
+	CreditNoteTaxAmountTaxabilityReasonNotSubjectToTax      CreditNoteTaxAmountTaxabilityReason = "not_subject_to_tax"
+	CreditNoteTaxAmountTaxabilityReasonNotSupported         CreditNoteTaxAmountTaxabilityReason = "not_supported"
+	CreditNoteTaxAmountTaxabilityReasonPortionProductExempt CreditNoteTaxAmountTaxabilityReason = "portion_product_exempt"
+	CreditNoteTaxAmountTaxabilityReasonPortionReducedRated  CreditNoteTaxAmountTaxabilityReason = "portion_reduced_rated"
+	CreditNoteTaxAmountTaxabilityReasonPortionStandardRated CreditNoteTaxAmountTaxabilityReason = "portion_standard_rated"
+	CreditNoteTaxAmountTaxabilityReasonProductExempt        CreditNoteTaxAmountTaxabilityReason = "product_exempt"
+	CreditNoteTaxAmountTaxabilityReasonProductExemptHoliday CreditNoteTaxAmountTaxabilityReason = "product_exempt_holiday"
+	CreditNoteTaxAmountTaxabilityReasonProportionallyRated  CreditNoteTaxAmountTaxabilityReason = "proportionally_rated"
+	CreditNoteTaxAmountTaxabilityReasonReducedRated         CreditNoteTaxAmountTaxabilityReason = "reduced_rated"
+	CreditNoteTaxAmountTaxabilityReasonReverseCharge        CreditNoteTaxAmountTaxabilityReason = "reverse_charge"
+	CreditNoteTaxAmountTaxabilityReasonStandardRated        CreditNoteTaxAmountTaxabilityReason = "standard_rated"
+	CreditNoteTaxAmountTaxabilityReasonTaxableBasisReduced  CreditNoteTaxAmountTaxabilityReason = "taxable_basis_reduced"
+	CreditNoteTaxAmountTaxabilityReasonZeroRated            CreditNoteTaxAmountTaxabilityReason = "zero_rated"
 )
 
 // Type of this credit note, one of `pre_payment` or `post_payment`. A `pre_payment` credit note means it was issued when the invoice was open. A `post_payment` credit note means it was issued when the invoice was paid.
@@ -81,6 +128,8 @@ type CreditNoteParams struct {
 	Amount *int64 `form:"amount"`
 	// The integer amount in cents (or local equivalent) representing the amount to credit the customer's balance, which will be automatically applied to their next invoice.
 	CreditAmount *int64 `form:"credit_amount"`
+	// The date when this credit note is in effect. Same as `created` unless overwritten. When defined, this value replaces the system-generated 'Date of issue' printed on the credit note PDF.
+	EffectiveAt *int64 `form:"effective_at"`
 	// ID of the invoice.
 	Invoice *string `form:"invoice"`
 	// Line items that make up the credit note.
@@ -141,6 +190,8 @@ type CreditNotePreviewParams struct {
 	Amount *int64 `form:"amount"`
 	// The integer amount in cents (or local equivalent) representing the amount to credit the customer's balance, which will be automatically applied to their next invoice.
 	CreditAmount *int64 `form:"credit_amount"`
+	// The date when this credit note is in effect. Same as `created` unless overwritten. When defined, this value replaces the system-generated 'Date of issue' printed on the credit note PDF.
+	EffectiveAt *int64 `form:"effective_at"`
 	// ID of the invoice.
 	Invoice *string `form:"invoice"`
 	// Line items that make up the credit note.
@@ -197,6 +248,8 @@ type CreditNotePreviewLinesParams struct {
 	Amount *int64 `form:"amount"`
 	// The integer amount in cents (or local equivalent) representing the amount to credit the customer's balance, which will be automatically applied to their next invoice.
 	CreditAmount *int64 `form:"credit_amount"`
+	// The date when this credit note is in effect. Same as `created` unless overwritten. When defined, this value replaces the system-generated 'Date of issue' printed on the credit note PDF.
+	EffectiveAt *int64 `form:"effective_at"`
 	// ID of the invoice.
 	Invoice *string `form:"invoice"`
 	// Line items that make up the credit note.
@@ -235,8 +288,12 @@ type CreditNoteShippingCostTax struct {
 	Amount int64 `json:"amount"`
 	// Tax rates can be applied to [invoices](https://stripe.com/docs/billing/invoices/tax-rates), [subscriptions](https://stripe.com/docs/billing/subscriptions/taxes) and [Checkout Sessions](https://stripe.com/docs/payments/checkout/set-up-a-subscription#tax-rates) to collect tax.
 	//
-	// Related guide: [Tax Rates](https://stripe.com/docs/billing/taxes/tax-rates).
+	// Related guide: [Tax rates](https://stripe.com/docs/billing/taxes/tax-rates)
 	Rate *TaxRate `json:"rate"`
+	// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
+	TaxabilityReason CreditNoteShippingCostTaxTaxabilityReason `json:"taxability_reason"`
+	// The amount on which tax is calculated, in %s.
+	TaxableAmount int64 `json:"taxable_amount"`
 }
 
 // The details of the cost of shipping, including the ShippingRate applied to the invoice.
@@ -259,13 +316,17 @@ type CreditNoteTaxAmount struct {
 	Amount int64 `json:"amount"`
 	// Whether this tax amount is inclusive or exclusive.
 	Inclusive bool `json:"inclusive"`
+	// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
+	TaxabilityReason CreditNoteTaxAmountTaxabilityReason `json:"taxability_reason"`
+	// The amount on which tax is calculated, in %s.
+	TaxableAmount int64 `json:"taxable_amount"`
 	// The tax rate that was applied to get this tax amount.
 	TaxRate *TaxRate `json:"tax_rate"`
 }
 
 // Issue a credit note to adjust an invoice's amount after the invoice is finalized.
 //
-// Related guide: [Credit Notes](https://stripe.com/docs/billing/invoices/credit-notes).
+// Related guide: [Credit notes](https://stripe.com/docs/billing/invoices/credit-notes)
 type CreditNote struct {
 	APIResource
 	// The integer amount in %s representing the total amount of the credit note, including tax.
@@ -284,6 +345,8 @@ type CreditNote struct {
 	DiscountAmount int64 `json:"discount_amount"`
 	// The aggregate amounts calculated per discount for all line items.
 	DiscountAmounts []*CreditNoteDiscountAmount `json:"discount_amounts"`
+	// The date when this credit note is in effect. Same as `created` unless overwritten. When defined, this value replaces the system-generated 'Date of issue' printed on the credit note PDF.
+	EffectiveAt int64 `json:"effective_at"`
 	// Unique identifier for the object.
 	ID string `json:"id"`
 	// ID of the invoice.

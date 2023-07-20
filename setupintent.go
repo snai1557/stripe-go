@@ -8,6 +8,17 @@ package stripe
 
 import "encoding/json"
 
+// Controls whether this SetupIntent will accept redirect-based payment methods.
+//
+// Redirect-based payment methods may require your customer to be redirected to a payment method's app or site for authentication or additional steps. To [confirm](https://stripe.com/docs/api/setup_intents/confirm) this SetupIntent, you may be required to provide a `return_url` to redirect customers back to your site after they authenticate or complete the setup.
+type SetupIntentAutomaticPaymentMethodsAllowRedirects string
+
+// List of values that SetupIntentAutomaticPaymentMethodsAllowRedirects can take
+const (
+	SetupIntentAutomaticPaymentMethodsAllowRedirectsAlways SetupIntentAutomaticPaymentMethodsAllowRedirects = "always"
+	SetupIntentAutomaticPaymentMethodsAllowRedirectsNever  SetupIntentAutomaticPaymentMethodsAllowRedirects = "never"
+)
+
 // Reason for cancellation of this SetupIntent, one of `abandoned`, `requested_by_customer`, or `duplicate`.
 type SetupIntentCancellationReason string
 
@@ -155,6 +166,7 @@ const (
 	SetupIntentPaymentMethodOptionsCardNetworkCartesBancaires SetupIntentPaymentMethodOptionsCardNetwork = "cartes_bancaires"
 	SetupIntentPaymentMethodOptionsCardNetworkDiners          SetupIntentPaymentMethodOptionsCardNetwork = "diners"
 	SetupIntentPaymentMethodOptionsCardNetworkDiscover        SetupIntentPaymentMethodOptionsCardNetwork = "discover"
+	SetupIntentPaymentMethodOptionsCardNetworkEFTPOSAU        SetupIntentPaymentMethodOptionsCardNetwork = "eftpos_au"
 	SetupIntentPaymentMethodOptionsCardNetworkInterac         SetupIntentPaymentMethodOptionsCardNetwork = "interac"
 	SetupIntentPaymentMethodOptionsCardNetworkJCB             SetupIntentPaymentMethodOptionsCardNetwork = "jcb"
 	SetupIntentPaymentMethodOptionsCardNetworkMastercard      SetupIntentPaymentMethodOptionsCardNetwork = "mastercard"
@@ -217,6 +229,16 @@ const (
 	SetupIntentUsageOffSession SetupIntentUsage = "off_session"
 	SetupIntentUsageOnSession  SetupIntentUsage = "on_session"
 )
+
+// When enabled, this SetupIntent will accept payment methods that you have enabled in the Dashboard and are compatible with this SetupIntent's other parameters.
+type SetupIntentAutomaticPaymentMethodsParams struct {
+	// Controls whether this SetupIntent will accept redirect-based payment methods.
+	//
+	// Redirect-based payment methods may require your customer to be redirected to a payment method's app or site for authentication or additional steps. To [confirm](https://stripe.com/docs/api/setup_intents/confirm) this SetupIntent, you may be required to provide a `return_url` to redirect customers back to your site after they authenticate or complete the setup.
+	AllowRedirects *string `form:"allow_redirects"`
+	// Whether this feature is enabled.
+	Enabled *bool `form:"enabled"`
+}
 
 // If this is a Mandate accepted offline, this hash contains details about the offline acceptance.
 type SetupIntentMandateDataCustomerAcceptanceOfflineParams struct{}
@@ -375,6 +397,9 @@ type SetupIntentPaymentMethodDataP24Params struct {
 // If this is a `paynow` PaymentMethod, this hash contains details about the PayNow payment method.
 type SetupIntentPaymentMethodDataPayNowParams struct{}
 
+// If this is a `paypal` PaymentMethod, this hash contains details about the PayPal payment method.
+type SetupIntentPaymentMethodDataPaypalParams struct{}
+
 // If this is a `pix` PaymentMethod, this hash contains details about the Pix payment method.
 type SetupIntentPaymentMethodDataPixParams struct{}
 
@@ -415,6 +440,9 @@ type SetupIntentPaymentMethodDataUSBankAccountParams struct {
 
 // If this is an `wechat_pay` PaymentMethod, this hash contains details about the wechat_pay payment method.
 type SetupIntentPaymentMethodDataWeChatPayParams struct{}
+
+// If this is a `zip` PaymentMethod, this hash contains details about the Zip payment method.
+type SetupIntentPaymentMethodDataZipParams struct{}
 
 // When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
 // value in the SetupIntent.
@@ -469,6 +497,8 @@ type SetupIntentPaymentMethodDataParams struct {
 	P24 *SetupIntentPaymentMethodDataP24Params `form:"p24"`
 	// If this is a `paynow` PaymentMethod, this hash contains details about the PayNow payment method.
 	PayNow *SetupIntentPaymentMethodDataPayNowParams `form:"paynow"`
+	// If this is a `paypal` PaymentMethod, this hash contains details about the PayPal payment method.
+	Paypal *SetupIntentPaymentMethodDataPaypalParams `form:"paypal"`
 	// If this is a `pix` PaymentMethod, this hash contains details about the Pix payment method.
 	Pix *SetupIntentPaymentMethodDataPixParams `form:"pix"`
 	// If this is a `promptpay` PaymentMethod, this hash contains details about the PromptPay payment method.
@@ -485,6 +515,8 @@ type SetupIntentPaymentMethodDataParams struct {
 	USBankAccount *SetupIntentPaymentMethodDataUSBankAccountParams `form:"us_bank_account"`
 	// If this is an `wechat_pay` PaymentMethod, this hash contains details about the wechat_pay payment method.
 	WeChatPay *SetupIntentPaymentMethodDataWeChatPayParams `form:"wechat_pay"`
+	// If this is a `zip` PaymentMethod, this hash contains details about the Zip payment method.
+	Zip *SetupIntentPaymentMethodDataZipParams `form:"zip"`
 }
 
 // Additional fields for Mandate creation
@@ -563,6 +595,12 @@ type SetupIntentPaymentMethodOptionsLinkParams struct {
 	PersistentToken *string `form:"persistent_token"`
 }
 
+// If this is a `paypal` PaymentMethod, this sub-hash contains details about the PayPal payment method options.
+type SetupIntentPaymentMethodOptionsPaypalParams struct {
+	// The PayPal Billing Agreement ID (BAID). This is an ID generated by PayPal which represents the mandate between the merchant and the customer.
+	BillingAgreementID *string `form:"billing_agreement_id"`
+}
+
 // Additional fields for Mandate creation
 type SetupIntentPaymentMethodOptionsSEPADebitMandateOptionsParams struct{}
 
@@ -606,6 +644,8 @@ type SetupIntentPaymentMethodOptionsParams struct {
 	Card *SetupIntentPaymentMethodOptionsCardParams `form:"card"`
 	// If this is a `link` PaymentMethod, this sub-hash contains details about the Link payment method options.
 	Link *SetupIntentPaymentMethodOptionsLinkParams `form:"link"`
+	// If this is a `paypal` PaymentMethod, this sub-hash contains details about the PayPal payment method options.
+	Paypal *SetupIntentPaymentMethodOptionsPaypalParams `form:"paypal"`
 	// If this is a `sepa_debit` SetupIntent, this sub-hash contains details about the SEPA Debit payment method options.
 	SEPADebit *SetupIntentPaymentMethodOptionsSEPADebitParams `form:"sepa_debit"`
 	// If this is a `us_bank_account` SetupIntent, this sub-hash contains details about the US bank account payment method options.
@@ -630,6 +670,8 @@ type SetupIntentParams struct {
 	//
 	// It can only be used for this Stripe Account's own money movement flows like InboundTransfer and OutboundTransfers. It cannot be set to true when setting up a PaymentMethod for a Customer, and defaults to false when attaching a PaymentMethod to a Customer.
 	AttachToSelf *bool `form:"attach_to_self"`
+	// When enabled, this SetupIntent will accept payment methods that you have enabled in the Dashboard and are compatible with this SetupIntent's other parameters.
+	AutomaticPaymentMethods *SetupIntentAutomaticPaymentMethodsParams `form:"automatic_payment_methods"`
 	// The client secret of the SetupIntent. Required if a publishable key is used to retrieve the SetupIntent.
 	ClientSecret *string `form:"client_secret"`
 	// Set to `true` to attempt to confirm this SetupIntent immediately. This parameter defaults to `false`. If the payment method attached is a card, a return_url may be provided in case additional authentication is required.
@@ -810,6 +852,9 @@ type SetupIntentConfirmPaymentMethodDataP24Params struct {
 // If this is a `paynow` PaymentMethod, this hash contains details about the PayNow payment method.
 type SetupIntentConfirmPaymentMethodDataPayNowParams struct{}
 
+// If this is a `paypal` PaymentMethod, this hash contains details about the PayPal payment method.
+type SetupIntentConfirmPaymentMethodDataPaypalParams struct{}
+
 // If this is a `pix` PaymentMethod, this hash contains details about the Pix payment method.
 type SetupIntentConfirmPaymentMethodDataPixParams struct{}
 
@@ -850,6 +895,9 @@ type SetupIntentConfirmPaymentMethodDataUSBankAccountParams struct {
 
 // If this is an `wechat_pay` PaymentMethod, this hash contains details about the wechat_pay payment method.
 type SetupIntentConfirmPaymentMethodDataWeChatPayParams struct{}
+
+// If this is a `zip` PaymentMethod, this hash contains details about the Zip payment method.
+type SetupIntentConfirmPaymentMethodDataZipParams struct{}
 
 // When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
 // value in the SetupIntent.
@@ -904,6 +952,8 @@ type SetupIntentConfirmPaymentMethodDataParams struct {
 	P24 *SetupIntentConfirmPaymentMethodDataP24Params `form:"p24"`
 	// If this is a `paynow` PaymentMethod, this hash contains details about the PayNow payment method.
 	PayNow *SetupIntentConfirmPaymentMethodDataPayNowParams `form:"paynow"`
+	// If this is a `paypal` PaymentMethod, this hash contains details about the PayPal payment method.
+	Paypal *SetupIntentConfirmPaymentMethodDataPaypalParams `form:"paypal"`
 	// If this is a `pix` PaymentMethod, this hash contains details about the Pix payment method.
 	Pix *SetupIntentConfirmPaymentMethodDataPixParams `form:"pix"`
 	// If this is a `promptpay` PaymentMethod, this hash contains details about the PromptPay payment method.
@@ -920,6 +970,8 @@ type SetupIntentConfirmPaymentMethodDataParams struct {
 	USBankAccount *SetupIntentConfirmPaymentMethodDataUSBankAccountParams `form:"us_bank_account"`
 	// If this is an `wechat_pay` PaymentMethod, this hash contains details about the wechat_pay payment method.
 	WeChatPay *SetupIntentConfirmPaymentMethodDataWeChatPayParams `form:"wechat_pay"`
+	// If this is a `zip` PaymentMethod, this hash contains details about the Zip payment method.
+	Zip *SetupIntentConfirmPaymentMethodDataZipParams `form:"zip"`
 }
 
 // Confirm that your customer intends to set up the current or
@@ -934,7 +986,8 @@ type SetupIntentConfirmPaymentMethodDataParams struct {
 // Otherwise, it will transition to the requires_action status and
 // suggest additional actions via next_action. If setup fails,
 // the SetupIntent will transition to the
-// requires_payment_method status.
+// requires_payment_method status or the canceled status if the
+// confirmation limit is reached.
 type SetupIntentConfirmParams struct {
 	Params `form:"*"`
 	// This hash contains details about the Mandate to create
@@ -968,6 +1021,16 @@ type SetupIntentVerifyMicrodepositsParams struct {
 	Amounts []*int64 `form:"amounts"`
 	// A six-character code starting with SM present in the microdeposit sent to the bank account.
 	DescriptorCode *string `form:"descriptor_code"`
+}
+
+// Settings for automatic payment methods compatible with this Setup Intent
+type SetupIntentAutomaticPaymentMethods struct {
+	// Controls whether this SetupIntent will accept redirect-based payment methods.
+	//
+	// Redirect-based payment methods may require your customer to be redirected to a payment method's app or site for authentication or additional steps. To [confirm](https://stripe.com/docs/api/setup_intents/confirm) this SetupIntent, you may be required to provide a `return_url` to redirect customers back to your site after they authenticate or complete the setup.
+	AllowRedirects SetupIntentAutomaticPaymentMethodsAllowRedirects `json:"allow_redirects"`
+	// Automatically calculates compatible payment methods
+	Enabled bool `json:"enabled"`
 }
 type SetupIntentNextActionCashAppHandleRedirectOrDisplayQRCodeQRCode struct {
 	// The date (unix timestamp) when the QR code expires.
@@ -1087,6 +1150,10 @@ type SetupIntentPaymentMethodOptionsLink struct {
 	// Token used for persistent Link logins.
 	PersistentToken string `json:"persistent_token"`
 }
+type SetupIntentPaymentMethodOptionsPaypal struct {
+	// The PayPal Billing Agreement ID (BAID). This is an ID generated by PayPal which represents the mandate between the merchant and the customer.
+	BillingAgreementID string `json:"billing_agreement_id"`
+}
 type SetupIntentPaymentMethodOptionsSEPADebitMandateOptions struct{}
 type SetupIntentPaymentMethodOptionsSEPADebit struct {
 	MandateOptions *SetupIntentPaymentMethodOptionsSEPADebitMandateOptions `json:"mandate_options"`
@@ -1109,6 +1176,7 @@ type SetupIntentPaymentMethodOptions struct {
 	BLIK          *SetupIntentPaymentMethodOptionsBLIK          `json:"blik"`
 	Card          *SetupIntentPaymentMethodOptionsCard          `json:"card"`
 	Link          *SetupIntentPaymentMethodOptionsLink          `json:"link"`
+	Paypal        *SetupIntentPaymentMethodOptionsPaypal        `json:"paypal"`
 	SEPADebit     *SetupIntentPaymentMethodOptionsSEPADebit     `json:"sepa_debit"`
 	USBankAccount *SetupIntentPaymentMethodOptionsUSBankAccount `json:"us_bank_account"`
 }
@@ -1134,7 +1202,7 @@ type SetupIntentPaymentMethodOptions struct {
 // By using SetupIntents, you ensure that your customers experience the minimum set of required friction,
 // even as regulations change over time.
 //
-// Related guide: [Setup Intents API](https://stripe.com/docs/payments/setup-intents).
+// Related guide: [Setup Intents API](https://stripe.com/docs/payments/setup-intents)
 type SetupIntent struct {
 	APIResource
 	// ID of the Connect application that created the SetupIntent.
@@ -1143,6 +1211,8 @@ type SetupIntent struct {
 	//
 	// It can only be used for this Stripe Account's own money movement flows like InboundTransfer and OutboundTransfers. It cannot be set to true when setting up a PaymentMethod for a Customer, and defaults to false when attaching a PaymentMethod to a Customer.
 	AttachToSelf bool `json:"attach_to_self"`
+	// Settings for automatic payment methods compatible with this Setup Intent
+	AutomaticPaymentMethods *SetupIntentAutomaticPaymentMethods `json:"automatic_payment_methods"`
 	// Reason for cancellation of this SetupIntent, one of `abandoned`, `requested_by_customer`, or `duplicate`.
 	CancellationReason SetupIntentCancellationReason `json:"cancellation_reason"`
 	// The client secret of this SetupIntent. Used for client-side retrieval using a publishable key.

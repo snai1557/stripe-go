@@ -121,9 +121,11 @@ const (
 	PaymentLinkPaymentMethodTypeIDEAL            PaymentLinkPaymentMethodType = "ideal"
 	PaymentLinkPaymentMethodTypeKlarna           PaymentLinkPaymentMethodType = "klarna"
 	PaymentLinkPaymentMethodTypeKonbini          PaymentLinkPaymentMethodType = "konbini"
+	PaymentLinkPaymentMethodTypeLink             PaymentLinkPaymentMethodType = "link"
 	PaymentLinkPaymentMethodTypeOXXO             PaymentLinkPaymentMethodType = "oxxo"
 	PaymentLinkPaymentMethodTypeP24              PaymentLinkPaymentMethodType = "p24"
 	PaymentLinkPaymentMethodTypePayNow           PaymentLinkPaymentMethodType = "paynow"
+	PaymentLinkPaymentMethodTypePaypal           PaymentLinkPaymentMethodType = "paypal"
 	PaymentLinkPaymentMethodTypePix              PaymentLinkPaymentMethodType = "pix"
 	PaymentLinkPaymentMethodTypePromptPay        PaymentLinkPaymentMethodType = "promptpay"
 	PaymentLinkPaymentMethodTypeSEPADebit        PaymentLinkPaymentMethodType = "sepa_debit"
@@ -211,6 +213,22 @@ type PaymentLinkCustomFieldLabelParams struct {
 	Type *string `form:"type"`
 }
 
+// Configuration for `type=numeric` fields.
+type PaymentLinkCustomFieldNumericParams struct {
+	// The maximum character length constraint for the customer's input.
+	MaximumLength *int64 `form:"maximum_length"`
+	// The minimum character length requirement for the customer's input.
+	MinimumLength *int64 `form:"minimum_length"`
+}
+
+// Configuration for `type=text` fields.
+type PaymentLinkCustomFieldTextParams struct {
+	// The maximum character length constraint for the customer's input.
+	MaximumLength *int64 `form:"maximum_length"`
+	// The minimum character length requirement for the customer's input.
+	MinimumLength *int64 `form:"minimum_length"`
+}
+
 // Collect additional information from your customer using custom fields. Up to 2 fields are supported.
 type PaymentLinkCustomFieldParams struct {
 	// Configuration for `type=dropdown` fields.
@@ -219,8 +237,12 @@ type PaymentLinkCustomFieldParams struct {
 	Key *string `form:"key"`
 	// The label for the field, displayed to the customer.
 	Label *PaymentLinkCustomFieldLabelParams `form:"label"`
+	// Configuration for `type=numeric` fields.
+	Numeric *PaymentLinkCustomFieldNumericParams `form:"numeric"`
 	// Whether the customer is required to complete the field before completing the Checkout Session. Defaults to `false`.
 	Optional *bool `form:"optional"`
+	// Configuration for `type=text` fields.
+	Text *PaymentLinkCustomFieldTextParams `form:"text"`
 	// The type of the field.
 	Type *string `form:"type"`
 }
@@ -482,6 +504,22 @@ type PaymentLinkCustomFieldLabel struct {
 	Type PaymentLinkCustomFieldLabelType `json:"type"`
 }
 
+// Configuration for `type=numeric` fields.
+type PaymentLinkCustomFieldNumeric struct {
+	// The maximum character length constraint for the customer's input.
+	MaximumLength int64 `json:"maximum_length"`
+	// The minimum character length requirement for the customer's input.
+	MinimumLength int64 `json:"minimum_length"`
+}
+
+// Configuration for `type=text` fields.
+type PaymentLinkCustomFieldText struct {
+	// The maximum character length constraint for the customer's input.
+	MaximumLength int64 `json:"maximum_length"`
+	// The minimum character length requirement for the customer's input.
+	MinimumLength int64 `json:"minimum_length"`
+}
+
 // Collect additional information from your customer using custom fields. Up to 2 fields are supported.
 type PaymentLinkCustomField struct {
 	// Configuration for `type=dropdown` fields.
@@ -489,8 +527,12 @@ type PaymentLinkCustomField struct {
 	// String of your choice that your integration can use to reconcile this field. Must be unique to this field, alphanumeric, and up to 200 characters.
 	Key   string                       `json:"key"`
 	Label *PaymentLinkCustomFieldLabel `json:"label"`
+	// Configuration for `type=numeric` fields.
+	Numeric *PaymentLinkCustomFieldNumeric `json:"numeric"`
 	// Whether the customer is required to complete the field before completing the Checkout Session. Defaults to `false`.
 	Optional bool `json:"optional"`
+	// Configuration for `type=text` fields.
+	Text *PaymentLinkCustomFieldText `json:"text"`
 	// The type of the field.
 	Type PaymentLinkCustomFieldType `json:"type"`
 }

@@ -407,6 +407,12 @@ type AccountCapabilitiesUSBankAccountACHPaymentsParams struct {
 	Requested *bool `form:"requested"`
 }
 
+// The zip_payments capability.
+type AccountCapabilitiesZipPaymentsParams struct {
+	// Passing true requests the capability for the account, if it is not already requested. A requested capability may not immediately become active. Any requirements to activate the capability are returned in the `requirements` arrays.
+	Requested *bool `form:"requested"`
+}
+
 // Each key of the dictionary represents a capability, and each capability maps to its settings (e.g. whether it has been requested or not). Each capability will be inactive until you have provided its specific requirements and Stripe has verified them. An account may have some of its requested capabilities be active and some be inactive.
 type AccountCapabilitiesParams struct {
 	// The acss_debit_payments capability.
@@ -479,6 +485,8 @@ type AccountCapabilitiesParams struct {
 	Treasury *AccountCapabilitiesTreasuryParams `form:"treasury"`
 	// The us_bank_account_ach_payments capability.
 	USBankAccountACHPayments *AccountCapabilitiesUSBankAccountACHPaymentsParams `form:"us_bank_account_ach_payments"`
+	// The zip_payments capability.
+	ZipPayments *AccountCapabilitiesZipPaymentsParams `form:"zip_payments"`
 }
 
 // The Kana variation of the company's primary address (Japan only).
@@ -553,6 +561,10 @@ type AccountCompanyParams struct {
 	DirectorsProvided *bool `form:"directors_provided"`
 	// Whether the company's executives have been provided. Set this Boolean to `true` after creating all the company's executives with [the Persons API](https://stripe.com/docs/api/persons) for accounts with a `relationship.executive` requirement.
 	ExecutivesProvided *bool `form:"executives_provided"`
+	// The export license ID number of the company, also referred as Import Export Code (India only).
+	ExportLicenseID *string `form:"export_license_id"`
+	// The purpose code to use for export transactions (India only).
+	ExportPurposeCode *string `form:"export_purpose_code"`
 	// The company's legal name.
 	Name *string `form:"name"`
 	// The Kana variation of the company's legal name (Japan only).
@@ -701,7 +713,7 @@ type AccountSettingsPaymentsParams struct {
 
 // Details on when funds from charges are available, and when they are paid out to an external account. For details, see our [Setting Bank and Debit Card Payouts](https://stripe.com/docs/connect/bank-transfers#payout-information) documentation.
 type AccountSettingsPayoutsScheduleParams struct {
-	// The number of days charge funds are held before being paid out. May also be set to `minimum`, representing the lowest available value for the account country. Default is `minimum`. The `delay_days` parameter does not apply when the `interval` is `manual`.
+	// The number of days charge funds are held before being paid out. May also be set to `minimum`, representing the lowest available value for the account country. Default is `minimum`. The `delay_days` parameter remains at the last configured value if `interval` is `manual`. [Learn more about controlling payout delay days](https://stripe.com/docs/connect/manage-payout-schedule).
 	DelayDays        *int64 `form:"delay_days"`
 	DelayDaysMinimum *bool  `form:"-"` // See custom AppendTo
 	// How frequently available funds are paid out. One of: `daily`, `manual`, `weekly`, or `monthly`. Default is `daily`.
@@ -908,6 +920,8 @@ type AccountCapabilities struct {
 	Treasury AccountCapabilityStatus `json:"treasury"`
 	// The status of the US bank account ACH payments capability of the account, or whether the account can directly process US bank account charges.
 	USBankAccountACHPayments AccountCapabilityStatus `json:"us_bank_account_ach_payments"`
+	// The status of the Zip capability of the account, or whether the account can directly process Zip charges.
+	ZipPayments AccountCapabilityStatus `json:"zip_payments"`
 }
 
 // The Kana variation of the company's primary address (Japan only).
@@ -980,6 +994,10 @@ type AccountCompany struct {
 	DirectorsProvided bool `json:"directors_provided"`
 	// Whether the company's executives have been provided. This Boolean will be `true` if you've manually indicated that all executives are provided via [the `executives_provided` parameter](https://stripe.com/docs/api/accounts/update#update_account-company-executives_provided), or if Stripe determined that sufficient executives were provided.
 	ExecutivesProvided bool `json:"executives_provided"`
+	// The export license ID number of the company, also referred as Import Export Code (India only).
+	ExportLicenseID string `json:"export_license_id"`
+	// The purpose code to use for export transactions (India only).
+	ExportPurposeCode string `json:"export_purpose_code"`
 	// The company's legal name.
 	Name string `json:"name"`
 	// The Kana variation of the company's legal name (Japan only).
@@ -1223,7 +1241,7 @@ type Account struct {
 	Deleted         bool     `json:"deleted"`
 	// Whether account details have been submitted. Standard accounts cannot receive payouts before this is true.
 	DetailsSubmitted bool `json:"details_submitted"`
-	// An email address associated with the account. You can treat this as metadata: it is not used for authentication or messaging account holders.
+	// An email address associated with the account. It's not used for authentication and Stripe doesn't market to this field without explicit approval from the platform.
 	Email string `json:"email"`
 	// External accounts (bank accounts and debit cards) currently attached to this account
 	ExternalAccounts   *AccountExternalAccountList `json:"external_accounts"`
@@ -1235,7 +1253,7 @@ type Account struct {
 	// A platform cannot access a Standard or Express account's persons after the account starts onboarding, such as after generating an account link for the account.
 	// See the [Standard onboarding](https://stripe.com/docs/connect/standard-accounts) or [Express onboarding documentation](https://stripe.com/docs/connect/express-accounts) for information about platform pre-filling and account onboarding steps.
 	//
-	// Related guide: [Handling Identity Verification with the API](https://stripe.com/docs/connect/identity-verification-api#person-information).
+	// Related guide: [Handling identity verification with the API](https://stripe.com/docs/connect/identity-verification-api#person-information)
 	Individual *Person `json:"individual"`
 	// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata map[string]string `json:"metadata"`

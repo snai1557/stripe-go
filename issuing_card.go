@@ -224,7 +224,7 @@ type IssuingCardPINParams struct {
 
 // Additional information that may be required for clearing customs.
 type IssuingCardShippingCustoms struct {
-	// A registration number used for customs in Europe. See https://www.gov.uk/eori and https://ec.europa.eu/taxation_customs/business/customs-procedures-import-and-export/customs-procedures/economic-operators-registration-and-identification-number-eori_en.
+	// A registration number used for customs in Europe. See [https://www.gov.uk/eori](https://www.gov.uk/eori) for the UK and [https://ec.europa.eu/taxation_customs/business/customs-procedures-import-and-export/customs-procedures/economic-operators-registration-and-identification-number-eori_en](https://ec.europa.eu/taxation_customs/business/customs-procedures-import-and-export/customs-procedures/economic-operators-registration-and-identification-number-eori_en) for the EU.
 	EORINumber string `json:"eori_number"`
 }
 
@@ -304,7 +304,7 @@ type IssuingCard struct {
 	CancellationReason IssuingCardCancellationReason `json:"cancellation_reason"`
 	// An Issuing `Cardholder` object represents an individual or business entity who is [issued](https://stripe.com/docs/issuing) cards.
 	//
-	// Related guide: [How to create a Cardholder](https://stripe.com/docs/issuing/cards#create-cardholder)
+	// Related guide: [How to create a cardholder](https://stripe.com/docs/issuing/cards#create-cardholder)
 	Cardholder *IssuingCardholder `json:"cardholder"`
 	// Time at which the object was created. Measured in seconds since the Unix epoch.
 	Created int64 `json:"created"`

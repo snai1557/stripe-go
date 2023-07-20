@@ -100,15 +100,18 @@ const (
 	CheckoutSessionCustomerDetailsTaxExemptReverse CheckoutSessionCustomerDetailsTaxExempt = "reverse"
 )
 
-// The type of the tax ID, one of `eu_vat`, `br_cnpj`, `br_cpf`, `eu_oss_vat`, `gb_vat`, `nz_gst`, `au_abn`, `au_arn`, `in_gst`, `no_vat`, `za_vat`, `ch_vat`, `mx_rfc`, `sg_uen`, `ru_inn`, `ru_kpp`, `ca_bn`, `hk_br`, `es_cif`, `tw_vat`, `th_vat`, `jp_cn`, `jp_rn`, `jp_trn`, `li_uid`, `my_itn`, `us_ein`, `kr_brn`, `ca_qst`, `ca_gst_hst`, `ca_pst_bc`, `ca_pst_mb`, `ca_pst_sk`, `my_sst`, `sg_gst`, `ae_trn`, `cl_tin`, `sa_vat`, `id_npwp`, `my_frp`, `il_vat`, `ge_vat`, `ua_vat`, `is_vat`, `bg_uic`, `hu_tin`, `si_tin`, `ke_pin`, `tr_tin`, `eg_tin`, `ph_tin`, or `unknown`
+// The type of the tax ID, one of `ad_nrt`, `ar_cuit`, `eu_vat`, `bo_tin`, `br_cnpj`, `br_cpf`, `cn_tin`, `co_nit`, `cr_tin`, `do_rcn`, `ec_ruc`, `eu_oss_vat`, `pe_ruc`, `rs_pib`, `sv_nit`, `uy_ruc`, `ve_rif`, `vn_tin`, `gb_vat`, `nz_gst`, `au_abn`, `au_arn`, `in_gst`, `no_vat`, `za_vat`, `ch_vat`, `mx_rfc`, `sg_uen`, `ru_inn`, `ru_kpp`, `ca_bn`, `hk_br`, `es_cif`, `tw_vat`, `th_vat`, `jp_cn`, `jp_rn`, `jp_trn`, `li_uid`, `my_itn`, `us_ein`, `kr_brn`, `ca_qst`, `ca_gst_hst`, `ca_pst_bc`, `ca_pst_mb`, `ca_pst_sk`, `my_sst`, `sg_gst`, `ae_trn`, `cl_tin`, `sa_vat`, `id_npwp`, `my_frp`, `il_vat`, `ge_vat`, `ua_vat`, `is_vat`, `bg_uic`, `hu_tin`, `si_tin`, `ke_pin`, `tr_tin`, `eg_tin`, `ph_tin`, or `unknown`
 type CheckoutSessionCustomerDetailsTaxIDType string
 
 // List of values that CheckoutSessionCustomerDetailsTaxIDType can take
 const (
+	CheckoutSessionCustomerDetailsTaxIDTypeADNRT    CheckoutSessionCustomerDetailsTaxIDType = "ad_nrt"
 	CheckoutSessionCustomerDetailsTaxIDTypeAETRN    CheckoutSessionCustomerDetailsTaxIDType = "ae_trn"
+	CheckoutSessionCustomerDetailsTaxIDTypeARCUIT   CheckoutSessionCustomerDetailsTaxIDType = "ar_cuit"
 	CheckoutSessionCustomerDetailsTaxIDTypeAUABN    CheckoutSessionCustomerDetailsTaxIDType = "au_abn"
 	CheckoutSessionCustomerDetailsTaxIDTypeAUARN    CheckoutSessionCustomerDetailsTaxIDType = "au_arn"
 	CheckoutSessionCustomerDetailsTaxIDTypeBGUIC    CheckoutSessionCustomerDetailsTaxIDType = "bg_uic"
+	CheckoutSessionCustomerDetailsTaxIDTypeBOTIN    CheckoutSessionCustomerDetailsTaxIDType = "bo_tin"
 	CheckoutSessionCustomerDetailsTaxIDTypeBRCNPJ   CheckoutSessionCustomerDetailsTaxIDType = "br_cnpj"
 	CheckoutSessionCustomerDetailsTaxIDTypeBRCPF    CheckoutSessionCustomerDetailsTaxIDType = "br_cpf"
 	CheckoutSessionCustomerDetailsTaxIDTypeCABN     CheckoutSessionCustomerDetailsTaxIDType = "ca_bn"
@@ -119,6 +122,11 @@ const (
 	CheckoutSessionCustomerDetailsTaxIDTypeCAQST    CheckoutSessionCustomerDetailsTaxIDType = "ca_qst"
 	CheckoutSessionCustomerDetailsTaxIDTypeCHVAT    CheckoutSessionCustomerDetailsTaxIDType = "ch_vat"
 	CheckoutSessionCustomerDetailsTaxIDTypeCLTIN    CheckoutSessionCustomerDetailsTaxIDType = "cl_tin"
+	CheckoutSessionCustomerDetailsTaxIDTypeCNTIN    CheckoutSessionCustomerDetailsTaxIDType = "cn_tin"
+	CheckoutSessionCustomerDetailsTaxIDTypeCONIT    CheckoutSessionCustomerDetailsTaxIDType = "co_nit"
+	CheckoutSessionCustomerDetailsTaxIDTypeCRTIN    CheckoutSessionCustomerDetailsTaxIDType = "cr_tin"
+	CheckoutSessionCustomerDetailsTaxIDTypeDORCN    CheckoutSessionCustomerDetailsTaxIDType = "do_rcn"
+	CheckoutSessionCustomerDetailsTaxIDTypeECRUC    CheckoutSessionCustomerDetailsTaxIDType = "ec_ruc"
 	CheckoutSessionCustomerDetailsTaxIDTypeEGTIN    CheckoutSessionCustomerDetailsTaxIDType = "eg_tin"
 	CheckoutSessionCustomerDetailsTaxIDTypeESCIF    CheckoutSessionCustomerDetailsTaxIDType = "es_cif"
 	CheckoutSessionCustomerDetailsTaxIDTypeEUOSSVAT CheckoutSessionCustomerDetailsTaxIDType = "eu_oss_vat"
@@ -143,19 +151,25 @@ const (
 	CheckoutSessionCustomerDetailsTaxIDTypeMYSST    CheckoutSessionCustomerDetailsTaxIDType = "my_sst"
 	CheckoutSessionCustomerDetailsTaxIDTypeNOVAT    CheckoutSessionCustomerDetailsTaxIDType = "no_vat"
 	CheckoutSessionCustomerDetailsTaxIDTypeNZGST    CheckoutSessionCustomerDetailsTaxIDType = "nz_gst"
+	CheckoutSessionCustomerDetailsTaxIDTypePERUC    CheckoutSessionCustomerDetailsTaxIDType = "pe_ruc"
 	CheckoutSessionCustomerDetailsTaxIDTypePHTIN    CheckoutSessionCustomerDetailsTaxIDType = "ph_tin"
+	CheckoutSessionCustomerDetailsTaxIDTypeRSPIB    CheckoutSessionCustomerDetailsTaxIDType = "rs_pib"
 	CheckoutSessionCustomerDetailsTaxIDTypeRUINN    CheckoutSessionCustomerDetailsTaxIDType = "ru_inn"
 	CheckoutSessionCustomerDetailsTaxIDTypeRUKPP    CheckoutSessionCustomerDetailsTaxIDType = "ru_kpp"
 	CheckoutSessionCustomerDetailsTaxIDTypeSAVAT    CheckoutSessionCustomerDetailsTaxIDType = "sa_vat"
 	CheckoutSessionCustomerDetailsTaxIDTypeSGGST    CheckoutSessionCustomerDetailsTaxIDType = "sg_gst"
 	CheckoutSessionCustomerDetailsTaxIDTypeSGUEN    CheckoutSessionCustomerDetailsTaxIDType = "sg_uen"
 	CheckoutSessionCustomerDetailsTaxIDTypeSITIN    CheckoutSessionCustomerDetailsTaxIDType = "si_tin"
+	CheckoutSessionCustomerDetailsTaxIDTypeSVNIT    CheckoutSessionCustomerDetailsTaxIDType = "sv_nit"
 	CheckoutSessionCustomerDetailsTaxIDTypeTHVAT    CheckoutSessionCustomerDetailsTaxIDType = "th_vat"
 	CheckoutSessionCustomerDetailsTaxIDTypeTRTIN    CheckoutSessionCustomerDetailsTaxIDType = "tr_tin"
 	CheckoutSessionCustomerDetailsTaxIDTypeTWVAT    CheckoutSessionCustomerDetailsTaxIDType = "tw_vat"
 	CheckoutSessionCustomerDetailsTaxIDTypeUAVAT    CheckoutSessionCustomerDetailsTaxIDType = "ua_vat"
 	CheckoutSessionCustomerDetailsTaxIDTypeUnknown  CheckoutSessionCustomerDetailsTaxIDType = "unknown"
 	CheckoutSessionCustomerDetailsTaxIDTypeUSEIN    CheckoutSessionCustomerDetailsTaxIDType = "us_ein"
+	CheckoutSessionCustomerDetailsTaxIDTypeUYRUC    CheckoutSessionCustomerDetailsTaxIDType = "uy_ruc"
+	CheckoutSessionCustomerDetailsTaxIDTypeVERIF    CheckoutSessionCustomerDetailsTaxIDType = "ve_rif"
+	CheckoutSessionCustomerDetailsTaxIDTypeVNTIN    CheckoutSessionCustomerDetailsTaxIDType = "vn_tin"
 	CheckoutSessionCustomerDetailsTaxIDTypeZAVAT    CheckoutSessionCustomerDetailsTaxIDType = "za_vat"
 )
 
@@ -351,14 +365,16 @@ type CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddr
 
 // List of values that CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressType can take
 const (
+	CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypeABA      CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressType = "aba"
 	CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypeIBAN     CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressType = "iban"
 	CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypeSEPA     CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressType = "sepa"
 	CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypeSortCode CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressType = "sort_code"
 	CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypeSpei     CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressType = "spei"
+	CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypeSwift    CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressType = "swift"
 	CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypeZengin   CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressType = "zengin"
 )
 
-// The bank transfer type that this PaymentIntent is allowed to use for funding Permitted values include: `eu_bank_transfer`, `gb_bank_transfer`, `jp_bank_transfer`, or `mx_bank_transfer`.
+// The bank transfer type that this PaymentIntent is allowed to use for funding Permitted values include: `eu_bank_transfer`, `gb_bank_transfer`, `jp_bank_transfer`, `mx_bank_transfer`, or `us_bank_transfer`.
 type CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferType string
 
 // List of values that CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferType can take
@@ -367,6 +383,7 @@ const (
 	CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferTypeGBBankTransfer CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferType = "gb_bank_transfer"
 	CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferTypeJPBankTransfer CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferType = "jp_bank_transfer"
 	CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferTypeMXBankTransfer CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferType = "mx_bank_transfer"
+	CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferTypeUSBankTransfer CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferType = "us_bank_transfer"
 )
 
 // The funding method type to be used when there are not enough funds in the customer balance. Permitted values include: `bank_transfer`.
@@ -480,6 +497,19 @@ const (
 // Providing this parameter will [attach the payment method](https://stripe.com/docs/payments/save-during-payment) to the PaymentIntent's Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be [attached](https://stripe.com/docs/api/payment_methods/attach) to a Customer after the transaction completes.
 //
 // When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as [SCA](https://stripe.com/docs/strong-customer-authentication).
+type CheckoutSessionPaymentMethodOptionsLinkSetupFutureUsage string
+
+// List of values that CheckoutSessionPaymentMethodOptionsLinkSetupFutureUsage can take
+const (
+	CheckoutSessionPaymentMethodOptionsLinkSetupFutureUsageNone       CheckoutSessionPaymentMethodOptionsLinkSetupFutureUsage = "none"
+	CheckoutSessionPaymentMethodOptionsLinkSetupFutureUsageOffSession CheckoutSessionPaymentMethodOptionsLinkSetupFutureUsage = "off_session"
+)
+
+// Indicates that you intend to make future payments with this PaymentIntent's payment method.
+//
+// Providing this parameter will [attach the payment method](https://stripe.com/docs/payments/save-during-payment) to the PaymentIntent's Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be [attached](https://stripe.com/docs/api/payment_methods/attach) to a Customer after the transaction completes.
+//
+// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as [SCA](https://stripe.com/docs/strong-customer-authentication).
 type CheckoutSessionPaymentMethodOptionsOXXOSetupFutureUsage string
 
 // List of values that CheckoutSessionPaymentMethodOptionsOXXOSetupFutureUsage can take
@@ -582,6 +612,31 @@ const (
 	CheckoutSessionPaymentStatusUnpaid            CheckoutSessionPaymentStatus = "unpaid"
 )
 
+// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
+type CheckoutSessionShippingCostTaxTaxabilityReason string
+
+// List of values that CheckoutSessionShippingCostTaxTaxabilityReason can take
+const (
+	CheckoutSessionShippingCostTaxTaxabilityReasonCustomerExempt          CheckoutSessionShippingCostTaxTaxabilityReason = "customer_exempt"
+	CheckoutSessionShippingCostTaxTaxabilityReasonExcludedTerritory       CheckoutSessionShippingCostTaxTaxabilityReason = "excluded_territory"
+	CheckoutSessionShippingCostTaxTaxabilityReasonJurisdictionUnsupported CheckoutSessionShippingCostTaxTaxabilityReason = "jurisdiction_unsupported"
+	CheckoutSessionShippingCostTaxTaxabilityReasonNotCollecting           CheckoutSessionShippingCostTaxTaxabilityReason = "not_collecting"
+	CheckoutSessionShippingCostTaxTaxabilityReasonNotSubjectToTax         CheckoutSessionShippingCostTaxTaxabilityReason = "not_subject_to_tax"
+	CheckoutSessionShippingCostTaxTaxabilityReasonNotSupported            CheckoutSessionShippingCostTaxTaxabilityReason = "not_supported"
+	CheckoutSessionShippingCostTaxTaxabilityReasonPortionProductExempt    CheckoutSessionShippingCostTaxTaxabilityReason = "portion_product_exempt"
+	CheckoutSessionShippingCostTaxTaxabilityReasonPortionReducedRated     CheckoutSessionShippingCostTaxTaxabilityReason = "portion_reduced_rated"
+	CheckoutSessionShippingCostTaxTaxabilityReasonPortionStandardRated    CheckoutSessionShippingCostTaxTaxabilityReason = "portion_standard_rated"
+	CheckoutSessionShippingCostTaxTaxabilityReasonProductExempt           CheckoutSessionShippingCostTaxTaxabilityReason = "product_exempt"
+	CheckoutSessionShippingCostTaxTaxabilityReasonProductExemptHoliday    CheckoutSessionShippingCostTaxTaxabilityReason = "product_exempt_holiday"
+	CheckoutSessionShippingCostTaxTaxabilityReasonProportionallyRated     CheckoutSessionShippingCostTaxTaxabilityReason = "proportionally_rated"
+	CheckoutSessionShippingCostTaxTaxabilityReasonReducedRated            CheckoutSessionShippingCostTaxTaxabilityReason = "reduced_rated"
+	CheckoutSessionShippingCostTaxTaxabilityReasonReverseCharge           CheckoutSessionShippingCostTaxTaxabilityReason = "reverse_charge"
+	CheckoutSessionShippingCostTaxTaxabilityReasonStandardRated           CheckoutSessionShippingCostTaxTaxabilityReason = "standard_rated"
+	CheckoutSessionShippingCostTaxTaxabilityReasonTaxableBasisReduced     CheckoutSessionShippingCostTaxTaxabilityReason = "taxable_basis_reduced"
+	CheckoutSessionShippingCostTaxTaxabilityReasonVATExempt               CheckoutSessionShippingCostTaxTaxabilityReason = "vat_exempt"
+	CheckoutSessionShippingCostTaxTaxabilityReasonZeroRated               CheckoutSessionShippingCostTaxTaxabilityReason = "zero_rated"
+)
+
 // The status of the Checkout Session, one of `open`, `complete`, or `expired`.
 type CheckoutSessionStatus string
 
@@ -604,6 +659,31 @@ const (
 	CheckoutSessionSubmitTypeBook   CheckoutSessionSubmitType = "book"
 	CheckoutSessionSubmitTypeDonate CheckoutSessionSubmitType = "donate"
 	CheckoutSessionSubmitTypePay    CheckoutSessionSubmitType = "pay"
+)
+
+// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
+type CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason string
+
+// List of values that CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason can take
+const (
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonCustomerExempt          CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "customer_exempt"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonExcludedTerritory       CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "excluded_territory"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonJurisdictionUnsupported CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "jurisdiction_unsupported"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonNotCollecting           CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "not_collecting"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonNotSubjectToTax         CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "not_subject_to_tax"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonNotSupported            CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "not_supported"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonPortionProductExempt    CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "portion_product_exempt"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonPortionReducedRated     CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "portion_reduced_rated"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonPortionStandardRated    CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "portion_standard_rated"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonProductExempt           CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "product_exempt"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonProductExemptHoliday    CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "product_exempt_holiday"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonProportionallyRated     CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "proportionally_rated"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonReducedRated            CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "reduced_rated"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonReverseCharge           CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "reverse_charge"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonStandardRated           CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "standard_rated"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonTaxableBasisReduced     CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "taxable_basis_reduced"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonVATExempt               CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "vat_exempt"
+	CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReasonZeroRated               CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason = "zero_rated"
 )
 
 // Only return the Checkout Sessions for the Customer details specified.
@@ -682,6 +762,22 @@ type CheckoutSessionCustomFieldLabelParams struct {
 	Type *string `form:"type"`
 }
 
+// Configuration for `type=numeric` fields.
+type CheckoutSessionCustomFieldNumericParams struct {
+	// The maximum character length constraint for the customer's input.
+	MaximumLength *int64 `form:"maximum_length"`
+	// The minimum character length requirement for the customer's input.
+	MinimumLength *int64 `form:"minimum_length"`
+}
+
+// Configuration for `type=text` fields.
+type CheckoutSessionCustomFieldTextParams struct {
+	// The maximum character length constraint for the customer's input.
+	MaximumLength *int64 `form:"maximum_length"`
+	// The minimum character length requirement for the customer's input.
+	MinimumLength *int64 `form:"minimum_length"`
+}
+
 // Collect additional information from your customer using custom fields. Up to 2 fields are supported.
 type CheckoutSessionCustomFieldParams struct {
 	// Configuration for `type=dropdown` fields.
@@ -690,8 +786,12 @@ type CheckoutSessionCustomFieldParams struct {
 	Key *string `form:"key"`
 	// The label for the field, displayed to the customer.
 	Label *CheckoutSessionCustomFieldLabelParams `form:"label"`
+	// Configuration for `type=numeric` fields.
+	Numeric *CheckoutSessionCustomFieldNumericParams `form:"numeric"`
 	// Whether the customer is required to complete the field before completing the Checkout Session. Defaults to `false`.
 	Optional *bool `form:"optional"`
+	// Configuration for `type=text` fields.
+	Text *CheckoutSessionCustomFieldTextParams `form:"text"`
 	// The type of the field.
 	Type *string `form:"type"`
 }
@@ -816,7 +916,7 @@ type CheckoutSessionLineItemPriceDataParams struct {
 	ProductData *CheckoutSessionLineItemPriceDataProductDataParams `form:"product_data"`
 	// The recurring components of a price such as `interval` and `interval_count`.
 	Recurring *CheckoutSessionLineItemPriceDataRecurringParams `form:"recurring"`
-	// Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of `inclusive`, `exclusive`, or `unspecified`. Once specified as either `inclusive` or `exclusive`, it cannot be changed.
+	// Only required if a [default tax behavior](https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of `inclusive`, `exclusive`, or `unspecified`. Once specified as either `inclusive` or `exclusive`, it cannot be changed.
 	TaxBehavior *string `form:"tax_behavior"`
 	// A non-negative integer in cents (or local equivalent) representing how much to charge. One of `unit_amount` or `unit_amount_decimal` is required.
 	UnitAmount *int64 `form:"unit_amount"`
@@ -1150,6 +1250,16 @@ type CheckoutSessionPaymentMethodOptionsKonbiniParams struct {
 	SetupFutureUsage *string `form:"setup_future_usage"`
 }
 
+// contains details about the Link payment method options.
+type CheckoutSessionPaymentMethodOptionsLinkParams struct {
+	// Indicates that you intend to make future payments with this PaymentIntent's payment method.
+	//
+	// Providing this parameter will [attach the payment method](https://stripe.com/docs/payments/save-during-payment) to the PaymentIntent's Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be [attached](https://stripe.com/docs/api/payment_methods/attach) to a Customer after the transaction completes.
+	//
+	// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as [SCA](https://stripe.com/docs/strong-customer-authentication).
+	SetupFutureUsage *string `form:"setup_future_usage"`
+}
+
 // contains details about the OXXO payment method options.
 type CheckoutSessionPaymentMethodOptionsOXXOParams struct {
 	// The number of calendar days before an OXXO voucher expires. For example, if you create an OXXO voucher on Monday and you set expires_after_days to 2, the OXXO invoice will expire on Wednesday at 23:59 America/Mexico_City time.
@@ -1181,6 +1291,26 @@ type CheckoutSessionPaymentMethodOptionsPayNowParams struct {
 	// Providing this parameter will [attach the payment method](https://stripe.com/docs/payments/save-during-payment) to the PaymentIntent's Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be [attached](https://stripe.com/docs/api/payment_methods/attach) to a Customer after the transaction completes.
 	//
 	// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as [SCA](https://stripe.com/docs/strong-customer-authentication).
+	SetupFutureUsage *string `form:"setup_future_usage"`
+}
+
+// contains details about the PayPal payment method options.
+type CheckoutSessionPaymentMethodOptionsPaypalParams struct {
+	// Controls when the funds will be captured from the customer's account.
+	CaptureMethod *string `form:"capture_method"`
+	// [Preferred locale](https://stripe.com/docs/payments/paypal/supported-locales) of the PayPal checkout page that the customer is redirected to.
+	PreferredLocale *string `form:"preferred_locale"`
+	// A reference of the PayPal transaction visible to customer which is mapped to PayPal's invoice ID. This must be a globally unique ID if you have configured in your PayPal settings to block multiple payments per invoice ID.
+	Reference *string `form:"reference"`
+	// The risk correlation ID for an on-session payment using a saved PayPal payment method.
+	RiskCorrelationID *string `form:"risk_correlation_id"`
+	// Indicates that you intend to make future payments with this PaymentIntent's payment method.
+	//
+	// Providing this parameter will [attach the payment method](https://stripe.com/docs/payments/save-during-payment) to the PaymentIntent's Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be [attached](https://stripe.com/docs/api/payment_methods/attach) to a Customer after the transaction completes.
+	//
+	// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as [SCA](https://stripe.com/docs/strong-customer-authentication).
+	//
+	// If `setup_future_usage` is already set and you are performing a request using a publishable key, you may only update the value from `on_session` to `off_session`.
 	SetupFutureUsage *string `form:"setup_future_usage"`
 }
 
@@ -1282,12 +1412,16 @@ type CheckoutSessionPaymentMethodOptionsParams struct {
 	Klarna *CheckoutSessionPaymentMethodOptionsKlarnaParams `form:"klarna"`
 	// contains details about the Konbini payment method options.
 	Konbini *CheckoutSessionPaymentMethodOptionsKonbiniParams `form:"konbini"`
+	// contains details about the Link payment method options.
+	Link *CheckoutSessionPaymentMethodOptionsLinkParams `form:"link"`
 	// contains details about the OXXO payment method options.
 	OXXO *CheckoutSessionPaymentMethodOptionsOXXOParams `form:"oxxo"`
 	// contains details about the P24 payment method options.
 	P24 *CheckoutSessionPaymentMethodOptionsP24Params `form:"p24"`
 	// contains details about the PayNow payment method options.
 	PayNow *CheckoutSessionPaymentMethodOptionsPayNowParams `form:"paynow"`
+	// contains details about the PayPal payment method options.
+	Paypal *CheckoutSessionPaymentMethodOptionsPaypalParams `form:"paypal"`
 	// contains details about the Pix payment method options.
 	Pix *CheckoutSessionPaymentMethodOptionsPixParams `form:"pix"`
 	// contains details about the Sepa Debit payment method options.
@@ -1418,6 +1552,8 @@ type CheckoutSessionSubscriptionDataTrialSettingsParams struct {
 type CheckoutSessionSubscriptionDataParams struct {
 	// A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice subtotal that will be transferred to the application owner's Stripe account. To use an application fee percent, the request must be made on behalf of another account, using the `Stripe-Account` header or an OAuth key. For more information, see the application fees [documentation](https://stripe.com/docs/connect/subscriptions#collecting-fees-on-subscriptions).
 	ApplicationFeePercent *float64 `form:"application_fee_percent"`
+	// A future timestamp to anchor the subscription's billing cycle for new subscriptions.
+	BillingCycleAnchor *int64 `form:"billing_cycle_anchor"`
 	// The ID of the coupon to apply to this subscription. A coupon applied to a subscription will only affect invoices created for that particular subscription.
 	Coupon *string `form:"coupon"`
 	// The tax rates that will apply to any subscription item that does not have
@@ -1432,6 +1568,8 @@ type CheckoutSessionSubscriptionDataParams struct {
 	Metadata map[string]string `form:"metadata"`
 	// The account on behalf of which to charge, for each of the subscription's invoices.
 	OnBehalfOf *string `form:"on_behalf_of"`
+	// Determines how to handle prorations resulting from the `billing_cycle_anchor`. If no value is passed, the default is `create_prorations`.
+	ProrationBehavior *string `form:"proration_behavior"`
 	// If specified, the funds from the subscription's invoices will be transferred to the destination and the ID of the resulting transfers will be found on the resulting charges.
 	TransferData *CheckoutSessionSubscriptionDataTransferDataParams `form:"transfer_data"`
 	// Unix timestamp representing the end of the trial period the customer
@@ -1634,6 +1772,18 @@ type CheckoutSessionConsentCollection struct {
 	TermsOfService CheckoutSessionConsentCollectionTermsOfService `json:"terms_of_service"`
 }
 
+// Currency conversion details for automatic currency conversion sessions
+type CheckoutSessionCurrencyConversion struct {
+	// Total of all items in source currency before discounts or taxes are applied.
+	AmountSubtotal int64 `json:"amount_subtotal"`
+	// Total of all items in source currency after discounts and taxes are applied.
+	AmountTotal int64 `json:"amount_total"`
+	// Exchange rate used to convert source currency amounts to customer currency amounts
+	FxRate float64 `json:"fx_rate,string"`
+	// Creation currency of the CheckoutSession before localization
+	SourceCurrency Currency `json:"source_currency"`
+}
+
 // The options available for the customer to select. Up to 200 options allowed.
 type CheckoutSessionCustomFieldDropdownOption struct {
 	// The label for the option, displayed to the customer. Up to 100 characters.
@@ -1658,12 +1808,20 @@ type CheckoutSessionCustomFieldLabel struct {
 
 // Configuration for `type=numeric` fields.
 type CheckoutSessionCustomFieldNumeric struct {
+	// The maximum character length constraint for the customer's input.
+	MaximumLength int64 `json:"maximum_length"`
+	// The minimum character length requirement for the customer's input.
+	MinimumLength int64 `json:"minimum_length"`
 	// The value entered by the customer, containing only digits.
 	Value string `json:"value"`
 }
 
 // Configuration for `type=text` fields.
 type CheckoutSessionCustomFieldText struct {
+	// The maximum character length constraint for the customer's input.
+	MaximumLength int64 `json:"maximum_length"`
+	// The minimum character length requirement for the customer's input.
+	MinimumLength int64 `json:"minimum_length"`
 	// The value entered by the customer.
 	Value string `json:"value"`
 }
@@ -1705,7 +1863,7 @@ type CheckoutSessionCustomText struct {
 
 // The customer's tax IDs after a completed Checkout Session.
 type CheckoutSessionCustomerDetailsTaxID struct {
-	// The type of the tax ID, one of `eu_vat`, `br_cnpj`, `br_cpf`, `eu_oss_vat`, `gb_vat`, `nz_gst`, `au_abn`, `au_arn`, `in_gst`, `no_vat`, `za_vat`, `ch_vat`, `mx_rfc`, `sg_uen`, `ru_inn`, `ru_kpp`, `ca_bn`, `hk_br`, `es_cif`, `tw_vat`, `th_vat`, `jp_cn`, `jp_rn`, `jp_trn`, `li_uid`, `my_itn`, `us_ein`, `kr_brn`, `ca_qst`, `ca_gst_hst`, `ca_pst_bc`, `ca_pst_mb`, `ca_pst_sk`, `my_sst`, `sg_gst`, `ae_trn`, `cl_tin`, `sa_vat`, `id_npwp`, `my_frp`, `il_vat`, `ge_vat`, `ua_vat`, `is_vat`, `bg_uic`, `hu_tin`, `si_tin`, `ke_pin`, `tr_tin`, `eg_tin`, `ph_tin`, or `unknown`
+	// The type of the tax ID, one of `ad_nrt`, `ar_cuit`, `eu_vat`, `bo_tin`, `br_cnpj`, `br_cpf`, `cn_tin`, `co_nit`, `cr_tin`, `do_rcn`, `ec_ruc`, `eu_oss_vat`, `pe_ruc`, `rs_pib`, `sv_nit`, `uy_ruc`, `ve_rif`, `vn_tin`, `gb_vat`, `nz_gst`, `au_abn`, `au_arn`, `in_gst`, `no_vat`, `za_vat`, `ch_vat`, `mx_rfc`, `sg_uen`, `ru_inn`, `ru_kpp`, `ca_bn`, `hk_br`, `es_cif`, `tw_vat`, `th_vat`, `jp_cn`, `jp_rn`, `jp_trn`, `li_uid`, `my_itn`, `us_ein`, `kr_brn`, `ca_qst`, `ca_gst_hst`, `ca_pst_bc`, `ca_pst_mb`, `ca_pst_sk`, `my_sst`, `sg_gst`, `ae_trn`, `cl_tin`, `sa_vat`, `id_npwp`, `my_frp`, `il_vat`, `ge_vat`, `ua_vat`, `is_vat`, `bg_uic`, `hu_tin`, `si_tin`, `ke_pin`, `tr_tin`, `eg_tin`, `ph_tin`, or `unknown`
 	Type CheckoutSessionCustomerDetailsTaxIDType `json:"type"`
 	// The value of the tax ID.
 	Value string `json:"value"`
@@ -1879,7 +2037,7 @@ type CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransfer struct {
 	//
 	// Permitted values include: `sort_code`, `zengin`, `iban`, or `spei`.
 	RequestedAddressTypes []CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressType `json:"requested_address_types"`
-	// The bank transfer type that this PaymentIntent is allowed to use for funding Permitted values include: `eu_bank_transfer`, `gb_bank_transfer`, `jp_bank_transfer`, or `mx_bank_transfer`.
+	// The bank transfer type that this PaymentIntent is allowed to use for funding Permitted values include: `eu_bank_transfer`, `gb_bank_transfer`, `jp_bank_transfer`, `mx_bank_transfer`, or `us_bank_transfer`.
 	Type CheckoutSessionPaymentMethodOptionsCustomerBalanceBankTransferType `json:"type"`
 }
 type CheckoutSessionPaymentMethodOptionsCustomerBalance struct {
@@ -1950,6 +2108,14 @@ type CheckoutSessionPaymentMethodOptionsKonbini struct {
 	//
 	// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as [SCA](https://stripe.com/docs/strong-customer-authentication).
 	SetupFutureUsage CheckoutSessionPaymentMethodOptionsKonbiniSetupFutureUsage `json:"setup_future_usage"`
+}
+type CheckoutSessionPaymentMethodOptionsLink struct {
+	// Indicates that you intend to make future payments with this PaymentIntent's payment method.
+	//
+	// Providing this parameter will [attach the payment method](https://stripe.com/docs/payments/save-during-payment) to the PaymentIntent's Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be [attached](https://stripe.com/docs/api/payment_methods/attach) to a Customer after the transaction completes.
+	//
+	// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as [SCA](https://stripe.com/docs/strong-customer-authentication).
+	SetupFutureUsage CheckoutSessionPaymentMethodOptionsLinkSetupFutureUsage `json:"setup_future_usage"`
 }
 type CheckoutSessionPaymentMethodOptionsOXXO struct {
 	// The number of calendar days before an OXXO invoice expires. For example, if you create an OXXO invoice on Monday and you set expires_after_days to 2, the OXXO invoice will expire on Wednesday at 23:59 America/Mexico_City time.
@@ -2035,6 +2201,7 @@ type CheckoutSessionPaymentMethodOptions struct {
 	IDEAL            *CheckoutSessionPaymentMethodOptionsIDEAL            `json:"ideal"`
 	Klarna           *CheckoutSessionPaymentMethodOptionsKlarna           `json:"klarna"`
 	Konbini          *CheckoutSessionPaymentMethodOptionsKonbini          `json:"konbini"`
+	Link             *CheckoutSessionPaymentMethodOptionsLink             `json:"link"`
 	OXXO             *CheckoutSessionPaymentMethodOptionsOXXO             `json:"oxxo"`
 	P24              *CheckoutSessionPaymentMethodOptionsP24              `json:"p24"`
 	PayNow           *CheckoutSessionPaymentMethodOptionsPayNow           `json:"paynow"`
@@ -2061,8 +2228,12 @@ type CheckoutSessionShippingCostTax struct {
 	Amount int64 `json:"amount"`
 	// Tax rates can be applied to [invoices](https://stripe.com/docs/billing/invoices/tax-rates), [subscriptions](https://stripe.com/docs/billing/subscriptions/taxes) and [Checkout Sessions](https://stripe.com/docs/payments/checkout/set-up-a-subscription#tax-rates) to collect tax.
 	//
-	// Related guide: [Tax Rates](https://stripe.com/docs/billing/taxes/tax-rates).
+	// Related guide: [Tax rates](https://stripe.com/docs/billing/taxes/tax-rates)
 	Rate *TaxRate `json:"rate"`
+	// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
+	TaxabilityReason CheckoutSessionShippingCostTaxTaxabilityReason `json:"taxability_reason"`
+	// The amount on which tax is calculated, in %s.
+	TaxableAmount int64 `json:"taxable_amount"`
 }
 
 // The details of the customer cost of shipping, including the customer chosen ShippingRate.
@@ -2098,7 +2269,7 @@ type CheckoutSessionTotalDetailsBreakdownDiscount struct {
 	// A discount represents the actual application of a [coupon](https://stripe.com/docs/api#coupons) or [promotion code](https://stripe.com/docs/api#promotion_codes).
 	// It contains information about when the discount began, when it will end, and what it is applied to.
 	//
-	// Related guide: [Applying Discounts to Subscriptions](https://stripe.com/docs/billing/subscriptions/discounts).
+	// Related guide: [Applying discounts to subscriptions](https://stripe.com/docs/billing/subscriptions/discounts)
 	Discount *Discount `json:"discount"`
 }
 
@@ -2108,8 +2279,12 @@ type CheckoutSessionTotalDetailsBreakdownTax struct {
 	Amount int64 `json:"amount"`
 	// Tax rates can be applied to [invoices](https://stripe.com/docs/billing/invoices/tax-rates), [subscriptions](https://stripe.com/docs/billing/subscriptions/taxes) and [Checkout Sessions](https://stripe.com/docs/payments/checkout/set-up-a-subscription#tax-rates) to collect tax.
 	//
-	// Related guide: [Tax Rates](https://stripe.com/docs/billing/taxes/tax-rates).
+	// Related guide: [Tax rates](https://stripe.com/docs/billing/taxes/tax-rates)
 	Rate *TaxRate `json:"rate"`
+	// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
+	TaxabilityReason CheckoutSessionTotalDetailsBreakdownTaxTaxabilityReason `json:"taxability_reason"`
+	// The amount on which tax is calculated, in %s.
+	TaxableAmount int64 `json:"taxable_amount"`
 }
 type CheckoutSessionTotalDetailsBreakdown struct {
 	// The aggregated discounts.
@@ -2142,7 +2317,7 @@ type CheckoutSessionTotalDetails struct {
 // You can create a Checkout Session on your server and redirect to its URL
 // to begin Checkout.
 //
-// Related guide: [Checkout Quickstart](https://stripe.com/docs/checkout/quickstart).
+// Related guide: [Checkout quickstart](https://stripe.com/docs/checkout/quickstart)
 type CheckoutSession struct {
 	APIResource
 	// When set, provides configuration for actions to take if this Checkout Session expires.
@@ -2170,6 +2345,8 @@ type CheckoutSession struct {
 	Created int64 `json:"created"`
 	// Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
 	Currency Currency `json:"currency"`
+	// Currency conversion details for automatic currency conversion sessions
+	CurrencyConversion *CheckoutSessionCurrencyConversion `json:"currency_conversion"`
 	// The ID of the customer for this Session.
 	// For Checkout Sessions in `payment` or `subscription` mode, Checkout
 	// will create a new customer object based on information provided

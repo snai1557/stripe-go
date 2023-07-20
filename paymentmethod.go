@@ -8,7 +8,7 @@ package stripe
 
 import "encoding/json"
 
-// Card brand. Can be `amex`, `diners`, `discover`, `jcb`, `mastercard`, `unionpay`, `visa`, or `unknown`.
+// Card brand. Can be `amex`, `diners`, `discover`, `eftpos_au`, `jcb`, `mastercard`, `unionpay`, `visa`, or `unknown`.
 type PaymentMethodCardBrand string
 
 // List of values that PaymentMethodCardBrand can take
@@ -90,7 +90,7 @@ const (
 	PaymentMethodCardNetworksPreferredUnknown         PaymentMethodCardNetworksPreferred = "unknown"
 )
 
-// The type of the card wallet, one of `amex_express_checkout`, `apple_pay`, `google_pay`, `masterpass`, `samsung_pay`, or `visa_checkout`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
+// The type of the card wallet, one of `amex_express_checkout`, `apple_pay`, `google_pay`, `masterpass`, `samsung_pay`, `visa_checkout`, or `link`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
 type PaymentMethodCardWalletType string
 
 // List of values that PaymentMethodCardWalletType can take
@@ -98,9 +98,22 @@ const (
 	PaymentMethodCardWalletTypeAmexExpressCheckout PaymentMethodCardWalletType = "amex_express_checkout"
 	PaymentMethodCardWalletTypeApplePay            PaymentMethodCardWalletType = "apple_pay"
 	PaymentMethodCardWalletTypeGooglePay           PaymentMethodCardWalletType = "google_pay"
+	PaymentMethodCardWalletTypeLink                PaymentMethodCardWalletType = "link"
 	PaymentMethodCardWalletTypeMasterpass          PaymentMethodCardWalletType = "masterpass"
 	PaymentMethodCardWalletTypeSamsungPay          PaymentMethodCardWalletType = "samsung_pay"
 	PaymentMethodCardWalletTypeVisaCheckout        PaymentMethodCardWalletType = "visa_checkout"
+)
+
+// How card details were read in this transaction.
+type PaymentMethodCardPresentReadMethod string
+
+// List of values that PaymentMethodCardPresentReadMethod can take
+const (
+	PaymentMethodCardPresentReadMethodContactEmv               PaymentMethodCardPresentReadMethod = "contact_emv"
+	PaymentMethodCardPresentReadMethodContactlessEmv           PaymentMethodCardPresentReadMethod = "contactless_emv"
+	PaymentMethodCardPresentReadMethodContactlessMagstripeMode PaymentMethodCardPresentReadMethod = "contactless_magstripe_mode"
+	PaymentMethodCardPresentReadMethodMagneticStripeFallback   PaymentMethodCardPresentReadMethod = "magnetic_stripe_fallback"
+	PaymentMethodCardPresentReadMethodMagneticStripeTrack2     PaymentMethodCardPresentReadMethod = "magnetic_stripe_track2"
 )
 
 // Account holder type, if provided. Can be one of `individual` or `company`.
@@ -110,6 +123,18 @@ type PaymentMethodFPXAccountHolderType string
 const (
 	PaymentMethodFPXAccountHolderTypeCompany    PaymentMethodFPXAccountHolderType = "company"
 	PaymentMethodFPXAccountHolderTypeIndividual PaymentMethodFPXAccountHolderType = "individual"
+)
+
+// How card details were read in this transaction.
+type PaymentMethodInteracPresentReadMethod string
+
+// List of values that PaymentMethodInteracPresentReadMethod can take
+const (
+	PaymentMethodInteracPresentReadMethodContactEmv               PaymentMethodInteracPresentReadMethod = "contact_emv"
+	PaymentMethodInteracPresentReadMethodContactlessEmv           PaymentMethodInteracPresentReadMethod = "contactless_emv"
+	PaymentMethodInteracPresentReadMethodContactlessMagstripeMode PaymentMethodInteracPresentReadMethod = "contactless_magstripe_mode"
+	PaymentMethodInteracPresentReadMethodMagneticStripeFallback   PaymentMethodInteracPresentReadMethod = "magnetic_stripe_fallback"
+	PaymentMethodInteracPresentReadMethodMagneticStripeTrack2     PaymentMethodInteracPresentReadMethod = "magnetic_stripe_track2"
 )
 
 // The type of the PaymentMethod. An additional hash is included on the PaymentMethod with a name matching this value. It contains additional information specific to the PaymentMethod type.
@@ -142,12 +167,14 @@ const (
 	PaymentMethodTypeOXXO             PaymentMethodType = "oxxo"
 	PaymentMethodTypeP24              PaymentMethodType = "p24"
 	PaymentMethodTypePayNow           PaymentMethodType = "paynow"
+	PaymentMethodTypePaypal           PaymentMethodType = "paypal"
 	PaymentMethodTypePix              PaymentMethodType = "pix"
 	PaymentMethodTypePromptPay        PaymentMethodType = "promptpay"
 	PaymentMethodTypeSEPADebit        PaymentMethodType = "sepa_debit"
 	PaymentMethodTypeSofort           PaymentMethodType = "sofort"
 	PaymentMethodTypeUSBankAccount    PaymentMethodType = "us_bank_account"
 	PaymentMethodTypeWeChatPay        PaymentMethodType = "wechat_pay"
+	PaymentMethodTypeZip              PaymentMethodType = "zip"
 )
 
 // Account holder type: individual or company.
@@ -175,6 +202,38 @@ type PaymentMethodUSBankAccountNetworksSupported string
 const (
 	PaymentMethodUSBankAccountNetworksSupportedACH            PaymentMethodUSBankAccountNetworksSupported = "ach"
 	PaymentMethodUSBankAccountNetworksSupportedUSDomesticWire PaymentMethodUSBankAccountNetworksSupported = "us_domestic_wire"
+)
+
+// The ACH network code that resulted in this block.
+type PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode string
+
+// List of values that PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode can take
+const (
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR02 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R02"
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR03 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R03"
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR04 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R04"
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR05 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R05"
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR07 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R07"
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR08 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R08"
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR10 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R10"
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR11 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R11"
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR16 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R16"
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR20 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R20"
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR29 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R29"
+	PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCodeR31 PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode = "R31"
+)
+
+// The reason why this PaymentMethod's fingerprint has been blocked
+type PaymentMethodUSBankAccountStatusDetailsBlockedReason string
+
+// List of values that PaymentMethodUSBankAccountStatusDetailsBlockedReason can take
+const (
+	PaymentMethodUSBankAccountStatusDetailsBlockedReasonBankAccountClosed         PaymentMethodUSBankAccountStatusDetailsBlockedReason = "bank_account_closed"
+	PaymentMethodUSBankAccountStatusDetailsBlockedReasonBankAccountFrozen         PaymentMethodUSBankAccountStatusDetailsBlockedReason = "bank_account_frozen"
+	PaymentMethodUSBankAccountStatusDetailsBlockedReasonBankAccountInvalidDetails PaymentMethodUSBankAccountStatusDetailsBlockedReason = "bank_account_invalid_details"
+	PaymentMethodUSBankAccountStatusDetailsBlockedReasonBankAccountRestricted     PaymentMethodUSBankAccountStatusDetailsBlockedReason = "bank_account_restricted"
+	PaymentMethodUSBankAccountStatusDetailsBlockedReasonBankAccountUnusable       PaymentMethodUSBankAccountStatusDetailsBlockedReason = "bank_account_unusable"
+	PaymentMethodUSBankAccountStatusDetailsBlockedReasonDebitNotAuthorized        PaymentMethodUSBankAccountStatusDetailsBlockedReason = "debit_not_authorized"
 )
 
 // If this is an `acss_debit` PaymentMethod, this hash contains details about the ACSS Debit payment method.
@@ -318,6 +377,9 @@ type PaymentMethodP24Params struct {
 // If this is a `paynow` PaymentMethod, this hash contains details about the PayNow payment method.
 type PaymentMethodPayNowParams struct{}
 
+// If this is a `paypal` PaymentMethod, this hash contains details about the PayPal payment method.
+type PaymentMethodPaypalParams struct{}
+
 // If this is a `pix` PaymentMethod, this hash contains details about the Pix payment method.
 type PaymentMethodPixParams struct{}
 
@@ -358,6 +420,9 @@ type PaymentMethodUSBankAccountParams struct {
 
 // If this is an `wechat_pay` PaymentMethod, this hash contains details about the wechat_pay payment method.
 type PaymentMethodWeChatPayParams struct{}
+
+// If this is a `zip` PaymentMethod, this hash contains details about the Zip payment method.
+type PaymentMethodZipParams struct{}
 
 // Creates a PaymentMethod object. Read the [Stripe.js reference](https://stripe.com/docs/stripe-js/reference#stripe-create-payment-method) to learn how to create PaymentMethods via Stripe.js.
 //
@@ -414,6 +479,8 @@ type PaymentMethodParams struct {
 	P24 *PaymentMethodP24Params `form:"p24"`
 	// If this is a `paynow` PaymentMethod, this hash contains details about the PayNow payment method.
 	PayNow *PaymentMethodPayNowParams `form:"paynow"`
+	// If this is a `paypal` PaymentMethod, this hash contains details about the PayPal payment method.
+	Paypal *PaymentMethodPaypalParams `form:"paypal"`
 	// If this is a `pix` PaymentMethod, this hash contains details about the Pix payment method.
 	Pix *PaymentMethodPixParams `form:"pix"`
 	// If this is a `promptpay` PaymentMethod, this hash contains details about the PromptPay payment method.
@@ -430,6 +497,8 @@ type PaymentMethodParams struct {
 	USBankAccount *PaymentMethodUSBankAccountParams `form:"us_bank_account"`
 	// If this is an `wechat_pay` PaymentMethod, this hash contains details about the wechat_pay payment method.
 	WeChatPay *PaymentMethodWeChatPayParams `form:"wechat_pay"`
+	// This is a legacy parameter that will be removed in the future. It is a hash that does not accept any keys.
+	Zip *PaymentMethodZipParams `form:"zip"`
 	// The following parameters are used when cloning a PaymentMethod to the connected account
 	// The `Customer` to whom the original PaymentMethod is attached.
 	Customer *string `form:"customer"`
@@ -545,6 +614,7 @@ type PaymentMethodCardThreeDSecureUsage struct {
 type PaymentMethodCardWalletAmexExpressCheckout struct{}
 type PaymentMethodCardWalletApplePay struct{}
 type PaymentMethodCardWalletGooglePay struct{}
+type PaymentMethodCardWalletLink struct{}
 type PaymentMethodCardWalletMasterpass struct {
 	// Owner's verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
 	BillingAddress *Address `json:"billing_address"`
@@ -574,14 +644,15 @@ type PaymentMethodCardWallet struct {
 	// (For tokenized numbers only.) The last four digits of the device account number.
 	DynamicLast4 string                             `json:"dynamic_last4"`
 	GooglePay    *PaymentMethodCardWalletGooglePay  `json:"google_pay"`
+	Link         *PaymentMethodCardWalletLink       `json:"link"`
 	Masterpass   *PaymentMethodCardWalletMasterpass `json:"masterpass"`
 	SamsungPay   *PaymentMethodCardWalletSamsungPay `json:"samsung_pay"`
-	// The type of the card wallet, one of `amex_express_checkout`, `apple_pay`, `google_pay`, `masterpass`, `samsung_pay`, or `visa_checkout`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
+	// The type of the card wallet, one of `amex_express_checkout`, `apple_pay`, `google_pay`, `masterpass`, `samsung_pay`, `visa_checkout`, or `link`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
 	Type         PaymentMethodCardWalletType          `json:"type"`
 	VisaCheckout *PaymentMethodCardWalletVisaCheckout `json:"visa_checkout"`
 }
 type PaymentMethodCard struct {
-	// Card brand. Can be `amex`, `diners`, `discover`, `jcb`, `mastercard`, `unionpay`, `visa`, or `unknown`.
+	// Card brand. Can be `amex`, `diners`, `discover`, `eftpos_au`, `jcb`, `mastercard`, `unionpay`, `visa`, or `unknown`.
 	Brand PaymentMethodCardBrand `json:"brand"`
 	// Checks on Card address and CVC if provided.
 	Checks *PaymentMethodCardChecks `json:"checks"`
@@ -614,8 +685,50 @@ type PaymentMethodCard struct {
 	// The name of the card's issuing bank. (For internal use only and not typically available in standard API requests.)
 	Issuer string `json:"issuer"`
 }
-type PaymentMethodCardPresent struct{}
-type PaymentMethodCashApp struct{}
+
+// Contains information about card networks that can be used to process the payment.
+type PaymentMethodCardPresentNetworks struct {
+	// All available networks for the card.
+	Available []string `json:"available"`
+	// The preferred network for the card.
+	Preferred string `json:"preferred"`
+}
+type PaymentMethodCardPresent struct {
+	// Card brand. Can be `amex`, `diners`, `discover`, `eftpos_au`, `jcb`, `mastercard`, `unionpay`, `visa`, or `unknown`.
+	Brand string `json:"brand"`
+	// The cardholder name as read from the card, in [ISO 7813](https://en.wikipedia.org/wiki/ISO/IEC_7813) format. May include alphanumeric characters, special characters and first/last name separator (`/`). In some cases, the cardholder name may not be available depending on how the issuer has configured the card. Cardholder name is typically not available on swipe or contactless payments, such as those made with Apple Pay and Google Pay.
+	CardholderName string `json:"cardholder_name"`
+	// Two-letter ISO code representing the country of the card. You could use this attribute to get a sense of the international breakdown of cards you've collected.
+	Country string `json:"country"`
+	// A high-level description of the type of cards issued in this range. (For internal use only and not typically available in standard API requests.)
+	Description string `json:"description"`
+	// Two-digit number representing the card's expiration month.
+	ExpMonth int64 `json:"exp_month"`
+	// Four-digit number representing the card's expiration year.
+	ExpYear int64 `json:"exp_year"`
+	// Uniquely identifies this particular card number. You can use this attribute to check whether two customers who've signed up with you are using the same card number, for example. For payment methods that tokenize card information (Apple Pay, Google Pay), the tokenized number might be provided instead of the underlying card number.
+	//
+	// *Starting May 1, 2021, card fingerprint in India for Connect will change to allow two fingerprints for the same card --- one for India and one for the rest of the world.*
+	Fingerprint string `json:"fingerprint"`
+	// Card funding type. Can be `credit`, `debit`, `prepaid`, or `unknown`.
+	Funding string `json:"funding"`
+	// Issuer identification number of the card. (For internal use only and not typically available in standard API requests.)
+	IIN string `json:"iin"`
+	// The name of the card's issuing bank. (For internal use only and not typically available in standard API requests.)
+	Issuer string `json:"issuer"`
+	// The last four digits of the card.
+	Last4 string `json:"last4"`
+	// Contains information about card networks that can be used to process the payment.
+	Networks *PaymentMethodCardPresentNetworks `json:"networks"`
+	// How card details were read in this transaction.
+	ReadMethod PaymentMethodCardPresentReadMethod `json:"read_method"`
+}
+type PaymentMethodCashApp struct {
+	// A unique and immutable identifier assigned by Cash App to every buyer.
+	BuyerID string `json:"buyer_id"`
+	// A public identifier for buyers using Cash App.
+	Cashtag string `json:"cashtag"`
+}
 type PaymentMethodCustomerBalance struct{}
 type PaymentMethodEPS struct {
 	// The customer's bank. Should be one of `arzte_und_apotheker_bank`, `austrian_anadi_bank_ag`, `bank_austria`, `bankhaus_carl_spangler`, `bankhaus_schelhammer_und_schattera_ag`, `bawag_psk_ag`, `bks_bank_ag`, `brull_kallmus_bank_ag`, `btv_vier_lander_bank`, `capital_bank_grawe_gruppe_ag`, `deutsche_bank_ag`, `dolomitenbank`, `easybank_ag`, `erste_bank_und_sparkassen`, `hypo_alpeadriabank_international_ag`, `hypo_noe_lb_fur_niederosterreich_u_wien`, `hypo_oberosterreich_salzburg_steiermark`, `hypo_tirol_bank_ag`, `hypo_vorarlberg_bank_ag`, `hypo_bank_burgenland_aktiengesellschaft`, `marchfelder_bank`, `oberbank_ag`, `raiffeisen_bankengruppe_osterreich`, `schoellerbank_ag`, `sparda_bank_wien`, `volksbank_gruppe`, `volkskreditbank_ag`, or `vr_bank_braunau`.
@@ -635,7 +748,46 @@ type PaymentMethodIDEAL struct {
 	// The Bank Identifier Code of the customer's bank, if the bank was provided.
 	BIC string `json:"bic"`
 }
-type PaymentMethodInteracPresent struct{}
+
+// Contains information about card networks that can be used to process the payment.
+type PaymentMethodInteracPresentNetworks struct {
+	// All available networks for the card.
+	Available []string `json:"available"`
+	// The preferred network for the card.
+	Preferred string `json:"preferred"`
+}
+type PaymentMethodInteracPresent struct {
+	// Card brand. Can be `interac`, `mastercard` or `visa`.
+	Brand string `json:"brand"`
+	// The cardholder name as read from the card, in [ISO 7813](https://en.wikipedia.org/wiki/ISO/IEC_7813) format. May include alphanumeric characters, special characters and first/last name separator (`/`). In some cases, the cardholder name may not be available depending on how the issuer has configured the card. Cardholder name is typically not available on swipe or contactless payments, such as those made with Apple Pay and Google Pay.
+	CardholderName string `json:"cardholder_name"`
+	// Two-letter ISO code representing the country of the card. You could use this attribute to get a sense of the international breakdown of cards you've collected.
+	Country string `json:"country"`
+	// A high-level description of the type of cards issued in this range. (For internal use only and not typically available in standard API requests.)
+	Description string `json:"description"`
+	// Two-digit number representing the card's expiration month.
+	ExpMonth int64 `json:"exp_month"`
+	// Four-digit number representing the card's expiration year.
+	ExpYear int64 `json:"exp_year"`
+	// Uniquely identifies this particular card number. You can use this attribute to check whether two customers who've signed up with you are using the same card number, for example. For payment methods that tokenize card information (Apple Pay, Google Pay), the tokenized number might be provided instead of the underlying card number.
+	//
+	// *Starting May 1, 2021, card fingerprint in India for Connect will change to allow two fingerprints for the same card --- one for India and one for the rest of the world.*
+	Fingerprint string `json:"fingerprint"`
+	// Card funding type. Can be `credit`, `debit`, `prepaid`, or `unknown`.
+	Funding string `json:"funding"`
+	// Issuer identification number of the card. (For internal use only and not typically available in standard API requests.)
+	IIN string `json:"iin"`
+	// The name of the card's issuing bank. (For internal use only and not typically available in standard API requests.)
+	Issuer string `json:"issuer"`
+	// The last four digits of the card.
+	Last4 string `json:"last4"`
+	// Contains information about card networks that can be used to process the payment.
+	Networks *PaymentMethodInteracPresentNetworks `json:"networks"`
+	// EMV tag 5F2D. Preferred languages specified by the integrated circuit chip.
+	PreferredLocales []string `json:"preferred_locales"`
+	// How card details were read in this transaction.
+	ReadMethod PaymentMethodInteracPresentReadMethod `json:"read_method"`
+}
 
 // The customer's date of birth, if provided.
 type PaymentMethodKlarnaDOB struct {
@@ -652,6 +804,9 @@ type PaymentMethodKlarna struct {
 }
 type PaymentMethodKonbini struct{}
 type PaymentMethodLink struct {
+	// Two-letter ISO code representing the funding source (i.e. card, bank) country beneath the Link payment method.
+	// You could use this attribute to get a sense of the international breakdown of funding sources you've collected.
+	Country string `json:"country"`
 	// Account owner's email address.
 	Email string `json:"email"`
 	// Token used for persistent Link logins.
@@ -663,6 +818,13 @@ type PaymentMethodP24 struct {
 	Bank string `json:"bank"`
 }
 type PaymentMethodPayNow struct{}
+type PaymentMethodPaypal struct {
+	// Owner's email. Values are provided by PayPal directly
+	// (if supported) at the time of authorization or settlement. They cannot be set or mutated.
+	PayerEmail string `json:"payer_email"`
+	// PayPal account PayerID. This identifier uniquely identifies the PayPal customer.
+	PayerID string `json:"payer_id"`
+}
 type PaymentMethodPix struct{}
 type PaymentMethodPromptPay struct{}
 
@@ -705,6 +867,17 @@ type PaymentMethodUSBankAccountNetworks struct {
 	// All supported networks.
 	Supported []PaymentMethodUSBankAccountNetworksSupported `json:"supported"`
 }
+type PaymentMethodUSBankAccountStatusDetailsBlocked struct {
+	// The ACH network code that resulted in this block.
+	NetworkCode PaymentMethodUSBankAccountStatusDetailsBlockedNetworkCode `json:"network_code"`
+	// The reason why this PaymentMethod's fingerprint has been blocked
+	Reason PaymentMethodUSBankAccountStatusDetailsBlockedReason `json:"reason"`
+}
+
+// Contains information about the future reusability of this PaymentMethod.
+type PaymentMethodUSBankAccountStatusDetails struct {
+	Blocked *PaymentMethodUSBankAccountStatusDetailsBlocked `json:"blocked"`
+}
 type PaymentMethodUSBankAccount struct {
 	// Account holder type: individual or company.
 	AccountHolderType PaymentMethodUSBankAccountAccountHolderType `json:"account_holder_type"`
@@ -722,8 +895,11 @@ type PaymentMethodUSBankAccount struct {
 	Networks *PaymentMethodUSBankAccountNetworks `json:"networks"`
 	// Routing number of the bank account.
 	RoutingNumber string `json:"routing_number"`
+	// Contains information about the future reusability of this PaymentMethod.
+	StatusDetails *PaymentMethodUSBankAccountStatusDetails `json:"status_details"`
 }
 type PaymentMethodWeChatPay struct{}
+type PaymentMethodZip struct{}
 
 // PaymentMethod objects represent your customer's payment instruments.
 // You can use them with [PaymentIntents](https://stripe.com/docs/payments/payment-intents) to collect payments or save them to
@@ -770,6 +946,7 @@ type PaymentMethod struct {
 	OXXO      *PaymentMethodOXXO      `json:"oxxo"`
 	P24       *PaymentMethodP24       `json:"p24"`
 	PayNow    *PaymentMethodPayNow    `json:"paynow"`
+	Paypal    *PaymentMethodPaypal    `json:"paypal"`
 	Pix       *PaymentMethodPix       `json:"pix"`
 	PromptPay *PaymentMethodPromptPay `json:"promptpay"`
 	// Options to configure Radar. See [Radar Session](https://stripe.com/docs/radar/radar-session) for more information.
@@ -780,6 +957,7 @@ type PaymentMethod struct {
 	Type          PaymentMethodType           `json:"type"`
 	USBankAccount *PaymentMethodUSBankAccount `json:"us_bank_account"`
 	WeChatPay     *PaymentMethodWeChatPay     `json:"wechat_pay"`
+	Zip           *PaymentMethodZip           `json:"zip"`
 }
 
 // PaymentMethodList is a list of PaymentMethods as retrieved from a list endpoint.
