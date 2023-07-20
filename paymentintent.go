@@ -938,7 +938,10 @@ type PaymentIntentPaymentMethodDataParams struct {
 	WeChatPay *PaymentMethodWeChatPayParams `form:"wechat_pay"`
 	// If this is a `zip` PaymentMethod, this hash contains details about the Zip payment method.
 	Zip *PaymentIntentPaymentMethodDataZipParams `form:"zip"`
+	//
 	IP *string `form:"ip"`
+	// If this is a `card` PaymentMethod, this hash contains the user's card details. For backwards compatibility, you can alternatively provide a Stripe token (e.g., for Apple Pay, Amex Express Checkout, or legacy Checkout) into the card hash with format `card: {token: "tok_visa"}`. When providing a card number, you must meet the requirements for [PCI compliance](https://stripe.com/docs/security#validating-pci-compliance). We strongly recommend using Stripe.js instead of interacting with this API directly.
+	Card *PaymentMethodCardParams `form:"card"`
 }
 
 // Additional fields for Mandate creation
