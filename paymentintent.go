@@ -938,6 +938,7 @@ type PaymentIntentPaymentMethodDataParams struct {
 	WeChatPay *PaymentMethodWeChatPayParams `form:"wechat_pay"`
 	// If this is a `zip` PaymentMethod, this hash contains details about the Zip payment method.
 	Zip *PaymentIntentPaymentMethodDataZipParams `form:"zip"`
+	IP *string `form:"ip"`
 }
 
 // Additional fields for Mandate creation
