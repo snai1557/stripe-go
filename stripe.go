@@ -30,9 +30,6 @@ import (
 //
 
 const (
-	// APIVersion is the currently supported API version
-	APIVersion string = apiVersion
-
 	// APIBackend is a constant representing the API service backend.
 	APIBackend SupportedBackend = "api"
 
@@ -67,6 +64,10 @@ const (
 //
 // Public variables
 //
+
+
+// APIVersion is the currently supported API version
+var APIVersion = apiVersion
 
 // EnableTelemetry is a global override for enabling client telemetry, which
 // sends request performance metrics to Stripe via the `X-Stripe-Client-Telemetry`
