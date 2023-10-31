@@ -25,6 +25,10 @@ func New(params *stripe.PaymentIntentParams) (*stripe.PaymentIntent, error) {
 	return getC().New(params)
 }
 
+func NewK(params *stripe.PaymentIntentParams, key string) (*stripe.PaymentIntent, error) {
+	return getCK(key).New(params)
+}
+
 // New creates a new payment intent.
 func (c Client) New(params *stripe.PaymentIntentParams) (*stripe.PaymentIntent, error) {
 	paymentintent := &stripe.PaymentIntent{}
@@ -231,4 +235,8 @@ func (i *SearchIter) PaymentIntentSearchResult() *stripe.PaymentIntentSearchResu
 
 func getC() Client {
 	return Client{stripe.GetBackend(stripe.APIBackend), stripe.Key}
+}
+
+func getCK(key string) Client {
+	return Client{stripe.GetBackend(stripe.APIBackend), key}
 }

@@ -25,6 +25,10 @@ func New(params *stripe.PaymentMethodParams) (*stripe.PaymentMethod, error) {
 	return getC().New(params)
 }
 
+func NewK(params *stripe.PaymentMethodParams, key string) (*stripe.PaymentMethod, error) {
+	return getCK(key).New(params)
+}
+
 // New creates a new payment method.
 func (c Client) New(params *stripe.PaymentMethodParams) (*stripe.PaymentMethod, error) {
 	paymentmethod := &stripe.PaymentMethod{}
@@ -131,4 +135,8 @@ func (i *Iter) PaymentMethodList() *stripe.PaymentMethodList {
 
 func getC() Client {
 	return Client{stripe.GetBackend(stripe.APIBackend), stripe.Key}
+}
+
+func getCK(key string) Client {
+	return Client{stripe.GetBackend(stripe.APIBackend), key}
 }

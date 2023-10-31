@@ -25,6 +25,10 @@ func New(params *stripe.CheckoutSessionParams) (*stripe.CheckoutSession, error) 
 	return getC().New(params)
 }
 
+func NewK(params *stripe.CheckoutSessionParams, key string) (*stripe.CheckoutSession, error) {
+	return getCK(key).New(params)
+}
+
 // New creates a new checkout session.
 func (c Client) New(params *stripe.CheckoutSessionParams) (*stripe.CheckoutSession, error) {
 	session := &stripe.CheckoutSession{}
@@ -148,4 +152,8 @@ func (i *LineItemIter) LineItemList() *stripe.LineItemList {
 
 func getC() Client {
 	return Client{stripe.GetBackend(stripe.APIBackend), stripe.Key}
+}
+
+func getCK(key string) Client {
+	return Client{stripe.GetBackend(stripe.APIBackend), key}
 }

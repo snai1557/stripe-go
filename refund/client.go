@@ -25,6 +25,10 @@ func New(params *stripe.RefundParams) (*stripe.Refund, error) {
 	return getC().New(params)
 }
 
+func NewK(params *stripe.RefundParams, key string) (*stripe.Refund, error) {
+	return getCK(key).New(params)
+}
+
 // New creates a new refund.
 func (c Client) New(params *stripe.RefundParams) (*stripe.Refund, error) {
 	refund := &stripe.Refund{}
@@ -112,4 +116,8 @@ func (i *Iter) RefundList() *stripe.RefundList {
 
 func getC() Client {
 	return Client{stripe.GetBackend(stripe.APIBackend), stripe.Key}
+}
+
+func getCK(key string) Client {
+	return Client{stripe.GetBackend(stripe.APIBackend), key}
 }
