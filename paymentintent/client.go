@@ -47,6 +47,10 @@ func Get(id string, params *stripe.PaymentIntentParams) (*stripe.PaymentIntent, 
 	return getC().Get(id, params)
 }
 
+func GetK(id string, params *stripe.PaymentIntentParams, key string) (*stripe.PaymentIntent, error) {
+	return getCK(key).Get(id, params)
+}
+
 // Get returns the details of a payment intent.
 func (c Client) Get(id string, params *stripe.PaymentIntentParams) (*stripe.PaymentIntent, error) {
 	path := stripe.FormatURLPath("/v1/payment_intents/%s", id)
