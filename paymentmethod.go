@@ -531,6 +531,8 @@ type PaymentMethodParams struct {
 	Customer *string `form:"customer"`
 	// The PaymentMethod to share.
 	PaymentMethod *string `form:"payment_method"`
+	// IP.
+	IP *string `form:"ip"`
 }
 
 // AddExpand appends a new field to expand.
